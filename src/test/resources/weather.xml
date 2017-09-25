@@ -1,0 +1,136 @@
+<div class="styles-P6BkIGn8__root__2lGBi" classname="styles-P6BkIGn8__root__2lGBi">
+	<div class="styles-P6BkIGn8__wrapper__1TZgV js-onboarding__loc-manager">
+		<div class="styles-Uv9omspx__root__3w4QM" classname="styles-Uv9omspx__root__3w4QM">
+			<div
+				class="styles-Uv9omspx__cards__2TkMG styles-P6BkIGn8__cardCarousel__2HnEA"
+				style="transform:translateX(0px);"
+				classname="styles-Uv9omspx__cards__2TkMG styles-P6BkIGn8__cardCarousel__2HnEA">
+				<div class="styles-Uv9omspx__card__1Y8ZF" style="width:580px;opacity:1;z-index:2;"
+					classname="styles-Uv9omspx__card__1Y8ZF">
+					<div class="styles-xqEkFYuc__root__wwhxI primary" classname="styles-xqEkFYuc__root__wwhxI primary">
+						<div class="styles-xz0ANuUJ__root__HH-PD main-card" classname="styles-xz0ANuUJ__root__HH-PD main-card">
+							<div class="styles-xz0ANuUJ__titleLine__2fbed">
+								<a href="/weather/today/l/UKEN0320:1:UK" push="function(){return t(e.apply(void 0,arguments))}"
+									classname="styles-xz0ANuUJ__locationNameBadge__I-o-9" class="styles-xz0ANuUJ__locationNameBadge__I-o-9">
+									<span class="styles-xz0ANuUJ__locationName__1t7rO">City of Westminster, United Kingdom</span>
+								</a>
+								<ul class="styles-xz0ANuUJ__links__3Dsa8" classname="styles-xz0ANuUJ__links__3Dsa8">
+									<li class="styles-xz0ANuUJ__linkItem__3JVSH" classname="styles-xz0ANuUJ__linkItem__3JVSH">
+										<a href="/weather/today/l/UKEN0320:1:UK" push="function(){return t(e.apply(void 0,arguments))}"
+											classname="styles-xz0ANuUJ__link__3Lu4q" class="styles-xz0ANuUJ__link__3Lu4q">Today</a>
+									</li>
+									<li class="styles-xz0ANuUJ__linkItem__3JVSH" classname="styles-xz0ANuUJ__linkItem__3JVSH">
+										<a href="/weather/hourbyhour/l/UKEN0320:1:UK" push="function(){return t(e.apply(void 0,arguments))}"
+											classname="styles-xz0ANuUJ__link__3Lu4q" class="styles-xz0ANuUJ__link__3Lu4q">Hourly</a>
+									</li>
+									<li class="styles-xz0ANuUJ__linkItem__3JVSH" classname="styles-xz0ANuUJ__linkItem__3JVSH">
+										<a href="/weather/tenday/l/UKEN0320:1:UK" push="function(){return t(e.apply(void 0,arguments))}"
+											classname="styles-xz0ANuUJ__link__3Lu4q" class="styles-xz0ANuUJ__link__3Lu4q">10 Day</a>
+									</li>
+									<li class="styles-xz0ANuUJ__linkItem__3JVSH" classname="styles-xz0ANuUJ__linkItem__3JVSH">
+										<a href="/weather/radar/interactive/l/UKEN0320:1:UK" push="function(){return t(e.apply(void 0,arguments))}"
+											classname="styles-xz0ANuUJ__link__3Lu4q" class="styles-xz0ANuUJ__link__3Lu4q">Maps</a>
+									</li>
+								</ul>
+							</div>
+							<a href="/weather/today/l/UKEN0320:1:UK" push="function(){return t(e.apply(void 0,arguments))}"
+								classname="styles-xz0ANuUJ__weatherData__2fIEV" class="styles-xz0ANuUJ__weatherData__2fIEV">
+								<icon classname="icon icon-svg icon-svg-light icon-sunny icon-32"
+									class="icon icon-svg icon-svg-light icon-sunny icon-32">
+									<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+										viewBox="0 0 200 200" class="svg-sunny">
+										<use class="svg-sun" xlink:href="#svg-symbol-sun"></use>
+									</svg>
+								</icon>
+								<span class="styles-xz0ANuUJ__temperature__3Ph8k">55°</span>
+								<div class="styles-xz0ANuUJ__currentForecast__3Cjt9">
+									<span classname="styles-xz0ANuUJ__phrase__2KClj" class="styles-xz0ANuUJ__phrase__2KClj">Sunny
+									</span>
+									<div classname="styles-xz0ANuUJ__lowHighTemperature__72c1e"
+										class="styles-xz0ANuUJ__lowHighTemperature__72c1e">
+										<span>L 55°</span>
+										<span>H 65°</span>
+									</div>
+								</div>
+							</a>
+							<a href="/weather/today/l/UKEN0320:1:UK" push="function(){return t(e.apply(void 0,arguments))}"
+								classname="styles-xz0ANuUJ__nowBlurb__17gst" class="styles-xz0ANuUJ__nowBlurb__17gst">Sunshine and
+								a few clouds. High around 65F. Winds SW at 10 to 15 mph.</a>
+							<ul class="styles-xz0ANuUJ__links__3Dsa8">
+								<li class="styles-xz0ANuUJ__linkItem__3JVSH" classname="styles-xz0ANuUJ__linkItem__3JVSH">
+									<a href="/weather/today/l/UKEN0320:1:UK" push="function(){return t(e.apply(void 0,arguments))}"
+										classname="styles-xz0ANuUJ__link__3Lu4q" class="styles-xz0ANuUJ__link__3Lu4q">Today</a>
+								</li>
+								<li class="styles-xz0ANuUJ__linkItem__3JVSH" classname="styles-xz0ANuUJ__linkItem__3JVSH">
+									<a href="/weather/hourbyhour/l/UKEN0320:1:UK" push="function(){return t(e.apply(void 0,arguments))}"
+										classname="styles-xz0ANuUJ__link__3Lu4q" class="styles-xz0ANuUJ__link__3Lu4q">Hourly</a>
+								</li>
+								<li class="styles-xz0ANuUJ__linkItem__3JVSH" classname="styles-xz0ANuUJ__linkItem__3JVSH">
+									<a href="/weather/tenday/l/UKEN0320:1:UK" push="function(){return t(e.apply(void 0,arguments))}"
+										classname="styles-xz0ANuUJ__link__3Lu4q" class="styles-xz0ANuUJ__link__3Lu4q">10 Day</a>
+								</li>
+								<li class="styles-xz0ANuUJ__linkItem__3JVSH" classname="styles-xz0ANuUJ__linkItem__3JVSH">
+									<a href="/weather/radar/interactive/l/UKEN0320:1:UK" push="function(){return t(e.apply(void 0,arguments))}"
+										classname="styles-xz0ANuUJ__link__3Lu4q" class="styles-xz0ANuUJ__link__3Lu4q">Maps</a>
+								</li>
+							</ul>
+						</div>
+						<div class="styles-xqEkFYuc__bookmark__7n0ZC"
+							classname="theme__iconMenu__2aMxm styles-xqEkFYuc__iconMenu__YUT5j">
+							<button
+								class="theme__toggle__hC5Z2 theme__button__2Agdx theme__neutral__2CPs4 theme__inverse__2SPZr"
+								type="button" data-react-toolbox="button"
+								classname="theme__toggle__hC5Z2 theme__button__2Agdx theme__neutral__2CPs4 theme__inverse__2SPZr">
+								<span class="material-icons theme__icon__3aBSX"
+									data-react-toolbox="font-icon" aria-label=""
+									classname="material-icons theme__icon__3aBSX">bookmark_border</span>
+							</button>
+						</div>
+						<div class="styles-xqEkFYuc__savePrompt__d3tCK">
+							<div class="styles-xqEkFYuc__savePromptContent__309ed"
+								classname="styles-xqEkFYuc__savePromptContent__309ed">
+								<span>Do you want to save this location?</span>
+								<div class="styles-xqEkFYuc__savePromptActions__3-rMO">
+									<button class="styles-xqEkFYuc__button__9IKWe"
+										classname="styles-xqEkFYuc__button__9IKWe">Yes</button>
+									<button class="styles-xqEkFYuc__button__9IKWe"
+										classname="styles-xqEkFYuc__button__9IKWe">No</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="styles-Uv9omspx__card__1Y8ZF" style="width:550px;opacity:1;z-index:1;"
+					classname="styles-Uv9omspx__card__1Y8ZF">
+					<div class="styles-lRIyX9Pw__root__15tJ2" classname="styles-lRIyX9Pw__root__15tJ2">
+						<button
+							class="theme__button__2Agdx theme__flat__1jWAQ theme__button__2Agdx theme__squared__2GH_L theme__neutral__2CPs4 theme__inverse__2SPZr styles-lRIyX9Pw__addLocations__3YfRm"
+							tooltip="You have saved 10 locations. Please remove one to add a different location."
+							type="button" data-react-toolbox="button"
+							classname="theme__button__2Agdx theme__flat__1jWAQ theme__button__2Agdx theme__squared__2GH_L theme__neutral__2CPs4 theme__inverse__2SPZr styles-lRIyX9Pw__addLocations__3YfRm">
+							<span class="icon icon-font iconset-ui icon-plus" classname="icon icon-font iconset-ui icon-plus"></span>
+							<span>Add locations</span>
+						</button>
+						<a class="styles-lRIyX9Pw__manageNotificationsLink__3vcC6"
+							title="Manage Locations" href="/life/profile"
+							classname="styles-lRIyX9Pw__manageNotificationsLink__3vcC6">
+							<span>Manage Locations</span>
+							<span class="icon icon-font iconset-arrows icon-arrow-right-thin"
+								classname="icon icon-font iconset-arrows icon-arrow-right-thin"></span>
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="styles-Uv9omspx__arrow__2pY-r styles-Uv9omspx__left__2f1dd"
+				classname="styles-Uv9omspx__arrow__2pY-r styles-Uv9omspx__left__2f1dd">
+				<span class="icon icon-font iconset-arrows icon-arrow-left-thin"
+					classname="icon icon-font iconset-arrows icon-arrow-left-thin"></span>
+			</div>
+			<div class="styles-Uv9omspx__arrow__2pY-r styles-Uv9omspx__right__2G8F5"
+				classname="styles-Uv9omspx__arrow__2pY-r styles-Uv9omspx__right__2G8F5">
+				<span class="icon icon-font iconset-arrows icon-arrow-right-thin"
+					classname="icon icon-font iconset-arrows icon-arrow-right-thin"></span>
+			</div>
+		</div>
+	</div>
+</div>
