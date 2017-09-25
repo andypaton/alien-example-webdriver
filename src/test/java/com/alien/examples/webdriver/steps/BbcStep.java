@@ -55,7 +55,7 @@ public class BbcStep extends BaseStep {
 
 		assertTrue("BBC Cookies not displayed", pageObjectHelper.isElementPresent(webdriver, By.id("bbccookies")));
 		
-		scenario.write("Hooray - cookies policy is displayed!!!");
+		outputHelper.showMessage(scenario, "BBC cookies message", "replace me with cookie message!");
 	}
 
 	@After

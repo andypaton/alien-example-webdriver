@@ -6,6 +6,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 import com.alien.examples.webdriver.helpers.CucumberReportHelper;
+import com.alien.examples.webdriver.helpers.OutputHelper;
 import com.alien.examples.webdriver.helpers.PageObjectHelper;
 
 @Configuration
@@ -23,16 +24,18 @@ public class CucumberConfig {
 		return webdriver;
 	}
 	
+	@Bean()
+	OutputHelper outputHelper() {
+		return new OutputHelper();
+	}
 	
 	@Bean()
 	PageObjectHelper pageObjectHelper() {
-
 		return new PageObjectHelper();
 	}
 	
 	@Bean()
 	CucumberReportHelper cucumberReportHelper() {
-
 		return new CucumberReportHelper();
 	}
 
