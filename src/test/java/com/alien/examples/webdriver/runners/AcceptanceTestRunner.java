@@ -22,6 +22,8 @@ import cucumber.api.junit.Cucumber;
 
 public class AcceptanceTestRunner {
 
-
+    static {
+        System.setProperty("web.driver","chrome");
+    }
     
 }

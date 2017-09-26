@@ -36,39 +36,39 @@ public class WeatherStep extends BaseStep {
 		switch (driver) {
 		
 		case "Firefox": 
-			webdriver = new FirefoxDriver();
+			webDriver = new FirefoxDriver();
 		    break;
 
 		case "Chrome": 
-			webdriver = new ChromeDriver();
+			webDriver = new ChromeDriver();
 		    break;
 		    
 		}
-		webdriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        webdriver.navigate().to(WEATHER_URL);
+		webDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        webDriver.navigate().to(WEATHER_URL);
 	}
 	
 	@When("the weather home page has loaded$")
 	public void home_page_loaded() throws Throwable {
 		
-		System.out.println(webdriver.getPageSource());
+		System.out.println(webDriver.getPageSource());
 		
-		assertTrue("weather page has not loaded", pageObjectHelper.isElementPresent(webdriver, By.xpath(PROFILE_BUTTON_XPATH)));
+		assertTrue("weather page has not loaded", pageObjectHelper.isElementPresent(webDriver, By.xpath(PROFILE_BUTTON_XPATH)));
 
-		reportHelper.takeScreenShot(webdriver, scenario, "Home Page");
+		reportHelper.takeScreenShot(webDriver, scenario, "Home Page");
 	}
 
 	@Then("^the Profile link is displayed$")
 	public void profile_displayed() throws Throwable {
 
-		assertTrue("Profile link not displayed", pageObjectHelper.isElementPresent(webdriver, By.xpath(PROFILE_BUTTON_XPATH)));
+		assertTrue("Profile link not displayed", pageObjectHelper.isElementPresent(webDriver, By.xpath(PROFILE_BUTTON_XPATH)));
 		
 		scenario.write("Hooray - cookies policy is displayed!!!");
 	}
 
 	@After
 	private void teardown() {
-		webdriver.close();
+		webDriver.close();
 	}
 }
 
