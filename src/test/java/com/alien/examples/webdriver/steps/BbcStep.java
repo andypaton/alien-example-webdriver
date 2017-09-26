@@ -9,9 +9,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import com.alien.examples.webdriver.pageObjects.bbc.BbcHomePage;
+import com.alien.utils.webdriver.WebDriverUtility;
 
 import cucumber.api.Scenario;
-import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -21,14 +21,14 @@ public class BbcStep extends BaseStep {
 	
 	private static String BBC_HOME_PAGE = "http://www.bbc.com";
 
-//	private Scenario scenario;
-//	private BbcHomePage bbcHomePage;
+	private Scenario scenario;
+	private BbcHomePage bbcHomePage;
 	
 	
-//	@Before
-//	public void before(Scenario scenario) {
-//	    this.scenario = scenario;
-//	}
+	@Before
+	public void before(Scenario scenario) {
+	    this.scenario = scenario;
+	}
 	
 	@Given("^URL \"(.*)\" is opened in \"(Firefox|Chrome)\"$")
 	public void go_to_url(String url,  String driver) throws Throwable {
@@ -51,7 +51,7 @@ public class BbcStep extends BaseStep {
 	}
 	
 	@Given("^the BBC home page is opened in \"(Firefox|Chrome)\"$")
-	public void bbc_home_page(String url,  String driver) throws Throwable {
+	public void bbc_home_page(String driver) throws Throwable {
 
 		switch (driver) {
 		
@@ -65,7 +65,8 @@ public class BbcStep extends BaseStep {
 		    
 		}
 		
-		webDriver.get(BBC_HOME_PAGE);
+		WebDriverUtility webDriverUtility = new WebDriverUtility();
+		webDriverUtility.registerTargetEndpoint(BBC_HOME_PAGE, false);
 		
 		bbcHomePage = new BbcHomePage(webDriver);
 		
@@ -87,9 +88,17 @@ public class BbcStep extends BaseStep {
 		
 		outputHelper.showMessage(scenario, "BBC cookies message", "replace me with cookie message!");
 	}
+	
+	@When("^the \"([^\"]*)\" link is selected$")
+	public void the_link_is_selected(String link) throws Throwable {
 
-	@After
-	private void teardown() {
-		webDriver.close();
+
 	}
+
+	@Then("^the \"([^\"]*)\" page is displayed$")
+	public void the_page_is_displayed(String page) throws Throwable {
+
+
+	}
+
 }
