@@ -7,14 +7,11 @@ import com.alien.examples.webdriver.config.CucumberConfig;
 import com.alien.examples.webdriver.helpers.OutputHelper;
 import com.alien.utils.webdriver.WebDriverUtility;
 
-import cucumber.runtime.ScenarioImpl;
-
-@ContextConfiguration(classes={CucumberConfig.class, cucumber.runtime.ScenarioImpl.class})
+@ContextConfiguration(classes={CucumberConfig.class})
 public class BaseStep {
 	
 	@Autowired protected OutputHelper outputHelper;
 	
 	protected WebDriverUtility webDriverUtility;
-	@Autowired ScenarioImpl scenario;
 
 }

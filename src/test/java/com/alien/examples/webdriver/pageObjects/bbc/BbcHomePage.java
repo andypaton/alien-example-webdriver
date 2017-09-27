@@ -17,7 +17,6 @@ public class BbcHomePage extends PageObject {
     
     public BbcHomePage(final WebDriver webDriver) {
         super(webDriver);      
-//		waitForElement(webDriver, By.id("hp-bbc-homepage-content"), ELEMENT_IS_CLICKABLE);
         waitForPageToLoad(BbcHomePage.class);
     }
 

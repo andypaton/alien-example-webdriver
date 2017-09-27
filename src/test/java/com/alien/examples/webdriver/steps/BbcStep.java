@@ -8,13 +8,14 @@ import com.alien.examples.webdriver.pageObjects.bbc.BbcHomePage;
 import com.alien.utils.webdriver.WebDriverUtility;
 
 import cucumber.api.Scenario;
+import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
 public class BbcStep extends BaseStep {
 
-	@Autowired Scenario scenario;
+	private Scenario scenario;
 
 	
 	private static String BBC_HOME_PAGE = "http://www.bbc.com";
@@ -22,10 +23,10 @@ public class BbcStep extends BaseStep {
 	private BbcHomePage bbcHomePage;
 	
 	
-//	@Before
-//	public void before(Scenario scenario) {
-//	    this.scenario = scenario;
-//	}
+	@Before
+	public void before(Scenario scenario) {
+	    this.scenario = scenario;
+	}
 	
 //	@Given("^URL \"(.*)\" is opened in \"(Firefox|Chrome)\"$")
 //	public void go_to_url(String url,  String driver) throws Throwable {

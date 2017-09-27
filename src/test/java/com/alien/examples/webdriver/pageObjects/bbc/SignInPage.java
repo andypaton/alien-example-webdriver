@@ -9,6 +9,7 @@ public class SignInPage extends PageObject {
 	
     public SignInPage(final WebDriver webDriver) {
         super(webDriver);      
+        waitForPageToLoad(SignInPage.class);
     }
 
 }

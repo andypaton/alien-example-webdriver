@@ -1,7 +1,5 @@
 package com.alien.examples.webdriver.steps;
 
-import java.util.concurrent.TimeUnit;
-
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.openqa.selenium.WebDriver;
@@ -15,12 +13,12 @@ import cucumber.api.java.After;
 @ContextConfiguration(classes=CucumberConfig.class)
 public class SetupTeardown {
 		
-	@Autowired private static WebDriver webDriver;
+	@Autowired private WebDriver webDriver;
 
 	
 	@BeforeClass
 	public static void setUp() {
-		webDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+//		webDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	}
 	
 	@After
@@ -30,6 +28,6 @@ public class SetupTeardown {
 
 	@AfterClass
 	public static void tearDown() {
-		webDriver.close();
+//		webDriver.close();
 	}
 }

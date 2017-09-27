@@ -6,7 +6,6 @@ import org.springframework.context.annotation.Configuration;
 
 import com.alien.examples.webdriver.helpers.OutputHelper;
 import com.alien.utils.webdriver.CucumberWebDriver;
-import com.alien.utils.webdriver.WebDriverUtility;
 
 @Configuration
 @ComponentScan(basePackages={"com.alien.examples.webdriver"})
