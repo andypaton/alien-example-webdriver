@@ -34,13 +34,13 @@ public class RegisterAddressPage extends PageObject {
     @FindBy(id = "submit-button")
     private WebElement emailThingYouLove;
     
-    @FindBy(id = "register-button")
+    @FindBy(id = "submit-button")
     private WebElement register;
        
     
     public RegisterAddressPage(final WebDriver webDriver) {
         super(webDriver);      
-        waitForElement(By.id("register-button"), ELEMENT_IS_VISIBLE);
+        waitForElement(By.id("submit-button"), ELEMENT_IS_VISIBLE);
     }
     
     public void enterEmail(String email) {
