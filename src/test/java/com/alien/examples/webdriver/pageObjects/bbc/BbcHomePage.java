@@ -18,7 +18,8 @@ public class BbcHomePage extends PageObject {
     
     public BbcHomePage(final WebDriver webDriver) {
         super(webDriver);      
-        waitForPageToLoad(this.getClass());
+//        waitForPageToLoad(this.getClass());
+        waitForLoad();
     }
 
 	public boolean isInitialized() {
@@ -29,7 +30,7 @@ public class BbcHomePage extends PageObject {
     	return bbcCookies.getText();
     }
     
-	public SignInPage submit(){
+	public SignInPage signIn(){
 		signInLink.click();
 		return new SignInPage(webDriver);
 	}

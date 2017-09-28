@@ -34,9 +34,9 @@ public class SignInPage extends PageObject {
         this.password.sendKeys(password);
     }
     
-//	public RegisterPage signIn(){
+//	public ConfirmationPage signIn(){
 //		signIn.click();
-//		return new RegisterNowPage(webDriver);
+//		return new ConfirmationPage(webDriver);
 //	}
 	
 	public RegisterDobPage register(){

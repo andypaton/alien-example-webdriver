@@ -45,13 +45,9 @@ public class RegisterDobPage extends PageObject {
         return errorMessage.getText();
     }
     
-    public void next() {
+    public RegisterAddressPage next() {
         next.click();
+		return new RegisterAddressPage(webDriver);
     }
-	
-	public RegisterNowPage registerNow(){
-		registerNow.click();
-		return new RegisterNowPage(webDriver);
-	}
 
 }

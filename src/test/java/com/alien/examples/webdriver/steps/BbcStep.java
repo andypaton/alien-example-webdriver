@@ -8,6 +8,7 @@ import com.alien.examples.webdriver.pageObjects.bbc.BbcHomePage;
 import com.alien.utils.webdriver.WebDriverUtility;
 
 import cucumber.api.Scenario;
+import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -48,27 +49,30 @@ public class BbcStep extends BaseStep {
 //        webDriver.navigate().to(url);
 //	}
 	
-	@Given("^the BBC home page is opened in \"(Firefox|Chrome)\"$")
+	@Given("^the BBC home page is opened in \"(firefox|chrome)\"$")
 	public void bbc_home_page(String driver) throws Throwable {
 
 		switch (driver) {
 		
-		case "Firefox": 
+		case "firefox": 
 	        System.setProperty("web.driver","firefox");
 		    break;
 
-		case "Chrome": 
+		case "chrome": 
 	        System.setProperty("web.driver","chrome");
 		    break;
 		    
 		}
 		
 		webDriverUtility = new WebDriverUtility();
+		webDriverUtility.registerScenario(scenario);
 		webDriverUtility.registerTargetEndpoint(BBC_HOME_PAGE, false);
 		
 		bbcHomePage = new BbcHomePage(webDriverUtility.getWebDriver());
 		
 		assertTrue(bbcHomePage.isInitialized());		
+
+		webDriverUtility.takeScreenShot();
 	}
 
 	@When("the BBC home page is loaded$")
@@ -91,6 +95,9 @@ public class BbcStep extends BaseStep {
 	@When("^the \"([^\"]*)\" link is selected$")
 	public void the_link_is_selected(String link) throws Throwable {
 
+		bbcHomePage.signIn();
+		
+		webDriverUtility.takeScreenShot();
 
 	}
 
@@ -100,4 +107,13 @@ public class BbcStep extends BaseStep {
 
 	}
 
+	@When("^valid registration details are entered$")
+	public void valid_registration_details_are_entered() throws Throwable {
+
+	}
+	
+	@After
+	public void teardown(Scenario scenario) {
+		webDriverUtility.closeDriver();
+	}
 }
