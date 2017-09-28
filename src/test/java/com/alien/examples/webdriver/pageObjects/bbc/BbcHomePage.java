@@ -7,17 +7,18 @@ import org.openqa.selenium.support.FindBy;
 import com.alien.utils.webdriver.pageObjects.PageObject;
 
 public class BbcHomePage extends PageObject {
-
+	
     @FindBy(id = "bbccookies")
     private WebElement bbcCookies;
     
-    @FindBy(id = "signIn")
-    private WebElement signInButton;
+    @FindBy(id = "idcta-username")
+    private WebElement signInLink;
+    
     
     
     public BbcHomePage(final WebDriver webDriver) {
         super(webDriver);      
-        waitForPageToLoad(BbcHomePage.class);
+        waitForPageToLoad(this.getClass());
     }
 
 	public boolean isInitialized() {
@@ -29,7 +30,7 @@ public class BbcHomePage extends PageObject {
     }
     
 	public SignInPage submit(){
-		signInButton.click();
+		signInLink.click();
 		return new SignInPage(webDriver);
 	}
 }

@@ -18,7 +18,7 @@ public class BbcStep extends BaseStep {
 	private Scenario scenario;
 
 	
-	private static String BBC_HOME_PAGE = "http://www.bbc.com";
+	private static String BBC_HOME_PAGE = "http://www.bbc.co.uk";
 
 	private BbcHomePage bbcHomePage;
 	
