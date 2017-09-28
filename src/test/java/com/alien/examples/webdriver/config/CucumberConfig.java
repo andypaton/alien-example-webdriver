@@ -27,11 +27,6 @@ public class CucumberConfig {
 		CucumberWebDriver webdriver =  null;
 		return webdriver;
 	}
-//	
-//	@Bean()
-//	WebDriverUtility webDriverUtility(){
-//		return new WebDriverUtility();
-//	}
 	
 	@Bean()
 	OutputHelper outputHelper() {
