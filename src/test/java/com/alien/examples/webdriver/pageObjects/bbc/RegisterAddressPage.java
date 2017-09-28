@@ -1,5 +1,8 @@
 package com.alien.examples.webdriver.pageObjects.bbc;
 
+import static com.alien.utils.webdriver.pageObjects.State.ELEMENT_IS_VISIBLE;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -16,8 +19,11 @@ public class RegisterAddressPage extends PageObject {
     @FindBy(id = "password-input")
     private WebElement password;
     
-    @FindBy(id = "postcode-input")
-    private WebElement postcode;
+//    @FindBy(id = "postcode-input")
+//    private WebElement postcode;
+    
+    @FindBy(id = "hometown-input")
+    private WebElement hometown;
     
     @FindBy(id = "gender-input")
     private WebElement genderDropdown;
@@ -34,7 +40,7 @@ public class RegisterAddressPage extends PageObject {
     
     public RegisterAddressPage(final WebDriver webDriver) {
         super(webDriver);      
-        waitForPageToLoad(this.getClass());
+        waitForElement(By.id("register-button"), ELEMENT_IS_VISIBLE);
     }
     
     public void enterEmail(String email) {
@@ -45,8 +51,12 @@ public class RegisterAddressPage extends PageObject {
         this.password.sendKeys(password);
     }
 
-    public void enterPostcode(String postcode) {
-        this.postcode.sendKeys(postcode);
+//    public void enterPostcode(String postcode) {
+//        this.postcode.sendKeys(postcode);
+//    }
+    
+    public void enterHometown(String hometown) {
+        this.hometown.sendKeys(hometown);
     }
     
     public void selectGender(Gender gender){

@@ -1,10 +1,14 @@
 package com.alien.examples.webdriver.steps;
 
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
+import com.alien.examples.webdriver.helpers.Gender;
 import com.alien.examples.webdriver.pageObjects.bbc.BbcHomePage;
+import com.alien.examples.webdriver.pageObjects.bbc.RegisterAddressPage;
+import com.alien.examples.webdriver.pageObjects.bbc.RegisterDobPage;
+import com.alien.examples.webdriver.pageObjects.bbc.SignInPage;
+import com.alien.utils.webdriver.CucumberWebDriver;
 import com.alien.utils.webdriver.WebDriverUtility;
 
 import cucumber.api.Scenario;
@@ -17,11 +21,13 @@ import cucumber.api.java.en.When;
 public class BbcStep extends BaseStep {
 
 	private Scenario scenario;
-
 	
 	private static String BBC_HOME_PAGE = "http://www.bbc.co.uk";
 
 	private BbcHomePage bbcHomePage;
+	private SignInPage signInPage;
+	private RegisterDobPage registerDobPage;
+	private RegisterAddressPage registerAddressPage;
 	
 	
 	@Before
@@ -68,48 +74,77 @@ public class BbcStep extends BaseStep {
 		webDriverUtility.registerScenario(scenario);
 		webDriverUtility.registerTargetEndpoint(BBC_HOME_PAGE, false);
 		
-		bbcHomePage = new BbcHomePage(webDriverUtility.getWebDriver());
+		bbcHomePage = new BbcHomePage(getWebDriver());
 		
 		assertTrue(bbcHomePage.isInitialized());		
 
 		webDriverUtility.takeScreenShot();
 	}
 
-	@When("the BBC home page is loaded$")
-	public void home_page_loaded() throws Throwable {
-		
-//		assertTrue("home page has not loaded", pageObjectHelper.isElementPresent(webDriver, By.id("hp-bbc-homepage-content")));
-//
-//		reportHelper.takeScreenShot(webDriver, scenario, "Home Page");
-		webDriverUtility.takeScreenShot();
-	}
+//	@When("the BBC home page is loaded$")
+//	public void home_page_loaded() throws Throwable {
+//		
+////		assertTrue("home page has not loaded", pageObjectHelper.isElementPresent(webDriver, By.id("hp-bbc-homepage-content")));
+////
+////		reportHelper.takeScreenShot(webDriver, scenario, "Home Page");
+//		webDriverUtility.takeScreenShot();
+//	}
 
 	@Then("^BBC Cookies policy is displayed$")
 	public void bbc_cookies_displayed() throws Throwable {
 
-//		assertTrue("BBC Cookies not displayed", pageObjectHelper.isElementPresent(webDriver, By.id("bbccookies")));
-//		
-//		outputHelper.showMessage(scenario, "BBC cookies message", "replace me with cookie message!");
+//		assertTrue("BBC Cookies not displayed", bbcHomePage.isElementPresent(webDriver, By.id("bbccookies")));
 	}
 	
 	@When("^the \"([^\"]*)\" link is selected$")
 	public void the_link_is_selected(String link) throws Throwable {
 
-		bbcHomePage.signIn();
+		switch(link) {
+		case "Sign in":
+			signInPage = bbcHomePage.signIn();
+			break;
+		case "Register Now":
+			registerDobPage = signInPage.register();
+			break;
+		case "News":
+			break;
+		case "Sport":
+			break;
+		default:
+			fail("Unknown link");
+		}
 		
 		webDriverUtility.takeScreenShot();
-
 	}
 
 	@Then("^the \"([^\"]*)\" page is displayed$")
 	public void the_page_is_displayed(String page) throws Throwable {
 
-
+		webDriverUtility.takeScreenShot();
 	}
 
 	@When("^valid registration details are entered$")
 	public void valid_registration_details_are_entered() throws Throwable {
+		 
+		 registerDobPage.enterDay("05");
+		 registerDobPage.enterMonth("11");
+		 registerDobPage.enterYear("1999");
 
+         webDriverUtility.takeScreenShot();
+
+		 registerAddressPage = registerDobPage.next();
+
+		 registerAddressPage.enterEmail("blah@blah.com");
+		 registerAddressPage.enterPassword("TestP@55w0rd");
+		 registerAddressPage.enterHometown("Glasgow");;
+//		 registerAddressPage.enterPostcode("G1 7BC");;
+		 registerAddressPage.selectGender(Gender.MALE);
+		 
+         webDriverUtility.takeScreenShot();
+	}
+	
+	private CucumberWebDriver getWebDriver() {
+		return webDriverUtility.getWebDriver();
 	}
 	
 	@After

@@ -1,5 +1,8 @@
 package com.alien.examples.webdriver.pageObjects.bbc;
 
+import static com.alien.utils.webdriver.pageObjects.State.ELEMENT_IS_VISIBLE;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -19,7 +22,8 @@ public class BbcHomePage extends PageObject {
     public BbcHomePage(final WebDriver webDriver) {
         super(webDriver);      
 //        waitForPageToLoad(this.getClass());
-        waitForLoad();
+//        waitForLoad();
+        waitForElement(By.id("bbccookies"), ELEMENT_IS_VISIBLE);
     }
 
 	public boolean isInitialized() {

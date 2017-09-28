@@ -1,5 +1,8 @@
 package com.alien.examples.webdriver.pageObjects.bbc;
 
+import static com.alien.utils.webdriver.pageObjects.State.ELEMENT_IS_CLICKABLE;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -26,7 +29,7 @@ public class RegisterDobPage extends PageObject {
     
     public RegisterDobPage(final WebDriver webDriver) {
         super(webDriver);      
-        waitForPageToLoad(this.getClass());
+        waitForElement(By.id("submit-button"), ELEMENT_IS_CLICKABLE);
     }
     
     public void enterDay(String day) {
