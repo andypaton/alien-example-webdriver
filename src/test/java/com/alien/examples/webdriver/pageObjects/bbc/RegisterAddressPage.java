@@ -27,9 +27,6 @@ public class RegisterAddressPage extends PageObject {
     
     @FindBy(id="location-list")
     private WebElement locationList;
-
-    @FindBy(css = "ul[id='location-list'] li span[class=gel-long-primer]")
-    private WebElement hometownConfirmation;
     
     @FindBy(id = "gender-input")
     private WebElement genderDropdown;
@@ -37,7 +34,7 @@ public class RegisterAddressPage extends PageObject {
     @FindBy(xpath = "//span[contains(text(), 'No, thanks')]")
     private WebElement noThanks;
     
-    @FindBy(xpath = "//span[contains(text(), 'Yes please')]")
+    @FindBy(xpath = "//span[contains(text(), 'Yes please')]")  // exact text match
     private WebElement yesPlease;
     
     @FindBy(xpath = "//div[contains(@class, 'for-message--error')]")
@@ -49,7 +46,7 @@ public class RegisterAddressPage extends PageObject {
     @FindBy(id = "submit-button")
     private WebElement register;
     
-    private final static String LIST_ITEM_LOCATOR = "//li[contains(., '%s')][1]";
+    private final static String LIST_ITEM_LOCATOR = "//li[contains(., '%s')]"; // partial text match
     
     
     public RegisterAddressPage(final WebDriver webDriver) {
