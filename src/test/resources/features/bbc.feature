@@ -5,13 +5,20 @@ Feature: bbc home page
 	I want to navigate to their website
 	So that I can receive all the latest news
 
-
+@wip
   Scenario: Register - happy path
     Given the BBC home page is opened in "firefox"
     And the "Sign in" link is selected
     And the "Register Now" link is selected
-    When valid registration details are entered
+    When new registration details are entered
     Then the "Confirmation" page is displayed
+    
+  Scenario: Register - existing user retries
+    Given the BBC home page is opened in "firefox"
+    And the "Sign in" link is selected
+    And the "Register Now" link is selected
+    When existing registration details are entered
+    Then "Looks like you’ve already registered with this email" registration warning is displayed
     
   @wip  
   Scenario: Register - invalid DOB entered

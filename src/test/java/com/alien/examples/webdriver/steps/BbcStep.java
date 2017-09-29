@@ -18,6 +18,8 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
+import org.apache.commons.lang.RandomStringUtils;
+
 public class BbcStep extends BaseStep {
 
 	private Scenario scenario;
@@ -29,6 +31,10 @@ public class BbcStep extends BaseStep {
 	private RegisterDobPage registerDobPage;
 	private RegisterAddressPage registerAddressPage;
 	
+    private final static String REGISTERED_USER = "blah@blah.com";
+    private final static String REGISTERED_PASSWORD = "TestP@55w0rd";
+    private final static String HOMETOWN = "Glasgow";
+    private final static String HOMETOWN_SELECTION = "Glasgow, Glasgow City";
 	
 	@Before
 	public void before(Scenario scenario) {
@@ -123,24 +129,45 @@ public class BbcStep extends BaseStep {
 		webDriverUtility.takeScreenShot();
 	}
 
-	@When("^valid registration details are entered$")
-	public void valid_registration_details_are_entered() throws Throwable {
+	@When("^existing registration details are entered$")
+	public void existing_registration_details_are_entered() throws Throwable {
+         
+ 		doRegistration(REGISTERED_USER);
+	}
+	
+	@When("^new registration details are entered$")
+	public void new_registration_details_are_entered() throws Throwable {
 		 
+		String username = RandomStringUtils.randomAlphabetic(5) + "blah.com";
+		
+		doRegistration(username);
+	}
+	
+	@Then("^\"(.*)\" registration warning is displayed$")
+	public void registration_warning_displayed(String warning) throws Throwable {
+		 
+		assertTrue(registerAddressPage.getErrorMessage(), registerAddressPage.getErrorMessage().contains(warning));
+	}
+	
+	private void doRegistration(String username){
+		
 		 registerDobPage.enterDay("05");
 		 registerDobPage.enterMonth("11");
 		 registerDobPage.enterYear("1999");
 
-         webDriverUtility.takeScreenShot();
+        webDriverUtility.takeScreenShot();
 
 		 registerAddressPage = registerDobPage.next();
 
-		 registerAddressPage.enterEmail("blah@blah.com");
-		 registerAddressPage.enterPassword("TestP@55w0rd");
-		 registerAddressPage.enterHometown("Glasgow");;
-//		 registerAddressPage.enterPostcode("G1 7BC");;
+		 registerAddressPage.enterEmail(username);
+		 registerAddressPage.enterPassword(REGISTERED_PASSWORD);
+		 registerAddressPage.enterHometown(HOMETOWN);
+		 registerAddressPage.selectHometown(HOMETOWN_SELECTION);
+		 //		 registerAddressPage.enterPostcode("G1 7BC");;
 		 registerAddressPage.selectGender(Gender.MALE);
-		 
-         webDriverUtility.takeScreenShot();
+		 registerAddressPage.emailUpdates(false);;
+
+        webDriverUtility.takeScreenShot();
 	}
 	
 	private CucumberWebDriver getWebDriver() {

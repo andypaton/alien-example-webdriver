@@ -19,14 +19,26 @@ public class RegisterAddressPage extends PageObject {
     @FindBy(id = "password-input")
     private WebElement password;
     
-//    @FindBy(id = "postcode-input")
-//    private WebElement postcode;
+    @FindBy(id = "postcode-input")
+    private WebElement postcode;
     
     @FindBy(id = "hometown-input")
     private WebElement hometown;
     
+    @FindBy(id="location-list")
+    private WebElement locationList;
+
+    @FindBy(css = "ul[id='location-list'] li span[class=gel-long-primer]")
+    private WebElement hometownConfirmation;
+    
     @FindBy(id = "gender-input")
     private WebElement genderDropdown;
+    
+    @FindBy(xpath = "//span[contains(text(), 'No, thanks')]")
+    private WebElement noThanks;
+    
+    @FindBy(xpath = "//span[contains(text(), 'Yes please')]")
+    private WebElement yesPlease;
     
     @FindBy(xpath = "//div[contains(@class, 'for-message--error')]")
     private WebElement errorMessage;
@@ -36,7 +48,9 @@ public class RegisterAddressPage extends PageObject {
     
     @FindBy(id = "submit-button")
     private WebElement register;
-       
+    
+    private final static String LIST_ITEM_LOCATOR = "//li[contains(., '%s')][1]";
+    
     
     public RegisterAddressPage(final WebDriver webDriver) {
         super(webDriver);      
@@ -51,12 +65,30 @@ public class RegisterAddressPage extends PageObject {
         this.password.sendKeys(password);
     }
 
-//    public void enterPostcode(String postcode) {
-//        this.postcode.sendKeys(postcode);
-//    }
+    public void enterPostcode(String postcode) {
+        this.postcode.sendKeys(postcode);
+    }
     
     public void enterHometown(String hometown) {
         this.hometown.sendKeys(hometown);
+    }
+    
+    public void selectHometown(String selection) {
+    	
+        String xpath = String.format(LIST_ITEM_LOCATOR, selection);  
+        
+        waitForElement(By.xpath(xpath), ELEMENT_IS_VISIBLE);
+        		
+		webDriver.findElement(By.xpath(xpath)).click();
+    }
+    
+    public void emailUpdates(boolean sendEmail) {
+    	
+    	if (sendEmail){
+    		this.yesPlease.click();;    		
+    	}else{
+    		this.noThanks.click();;    		
+    	}
     }
     
     public void selectGender(Gender gender){
