@@ -20,7 +20,7 @@ public class RegisterAddressPage extends PageObject {
     @FindBy(id = "password-input")
     private WebElement password;
     
-    @FindBy(id = "postcode-input")
+    @FindBy(css = ".field__input.field__input--password-toggle") // first dot signifies a class, subsequent dots are spaces
     private WebElement postcode;
     
     @FindBy(id = "hometown-input")
