@@ -1,6 +1,7 @@
 package com.alien.examples.webdriver.pageObjects.bbc;
 
 import static com.alien.utils.webdriver.pageObjects.State.ELEMENT_IS_VISIBLE;
+import static org.junit.Assert.assertTrue;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -21,9 +22,10 @@ public class BbcHomePage extends PageObject {
     
     public BbcHomePage(final WebDriver webDriver) {
         super(webDriver);      
-//        waitForPageToLoad(this.getClass());
+//        waitForPageToLoad(this.getClass());  // cant use this if all elements are not going to be visible
 //        waitForLoad();
         waitForElement(By.id("bbccookies"), ELEMENT_IS_VISIBLE);
+		assertTrue(this.isInitialized());		
     }
 
 	public boolean isInitialized() {

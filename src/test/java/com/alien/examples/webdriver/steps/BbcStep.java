@@ -58,7 +58,7 @@ public class BbcStep extends BaseStep {
 //		    
 //		}
 //		webDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-//        webDriver.navigate().to(url);
+//      webDriver.navigate().to(url);
 //	}
 	
 	@Given("^the BBC home page is opened in \"(firefox|chrome)\"$")
@@ -82,19 +82,9 @@ public class BbcStep extends BaseStep {
 		
 		bbcHomePage = new BbcHomePage(getWebDriver());
 		
-		assertTrue(bbcHomePage.isInitialized());		
-
-		webDriverUtility.takeScreenShot();
-	}
-
-//	@When("the BBC home page is loaded$")
-//	public void home_page_loaded() throws Throwable {
-//		
-////		assertTrue("home page has not loaded", pageObjectHelper.isElementPresent(webDriver, By.id("hp-bbc-homepage-content")));
-////
-////		reportHelper.takeScreenShot(webDriver, scenario, "Home Page");
+	    // taking screenshots are very slow
 //		webDriverUtility.takeScreenShot();
-//	}
+	}
 
 	@Then("^BBC Cookies policy is displayed$")
 	public void bbc_cookies_displayed() throws Throwable {
@@ -120,13 +110,15 @@ public class BbcStep extends BaseStep {
 			fail("Unknown link");
 		}
 		
-		webDriverUtility.takeScreenShot();
+	    // taking screenshots are very slow
+//        webDriverUtility.takeScreenShot();
 	}
 
 	@Then("^the \"([^\"]*)\" page is displayed$")
 	public void the_page_is_displayed(String page) throws Throwable {
 
-		webDriverUtility.takeScreenShot();
+		 // taking screenshots are very slow
+         webDriverUtility.takeScreenShot();
 	}
 
 	@When("^existing registration details are entered$")
@@ -146,6 +138,9 @@ public class BbcStep extends BaseStep {
 	@Then("^\"(.*)\" registration warning is displayed$")
 	public void registration_warning_displayed(String warning) throws Throwable {
 		 
+	    // taking screenshots are very slow
+        webDriverUtility.takeScreenShot();
+        
 		assertTrue(registerAddressPage.getErrorMessage(), registerAddressPage.getErrorMessage().contains(warning));
 	}
 	
@@ -155,7 +150,8 @@ public class BbcStep extends BaseStep {
 		 registerDobPage.enterMonth("11");
 		 registerDobPage.enterYear("1999");
 
-        webDriverUtility.takeScreenShot();
+		 // taking screenshots are very slow
+//         webDriverUtility.takeScreenShot();
 
 		 registerAddressPage = registerDobPage.next();
 
@@ -167,7 +163,10 @@ public class BbcStep extends BaseStep {
 		 registerAddressPage.selectGender(Gender.MALE);
 		 registerAddressPage.emailUpdates(false);;
 
-        webDriverUtility.takeScreenShot();
+		 // taking screenshots are very slow
+//         webDriverUtility.takeScreenShot();
+        
+         registerAddressPage.register();
 	}
 	
 	private CucumberWebDriver getWebDriver() {

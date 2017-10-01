@@ -3,6 +3,7 @@ package com.alien.examples.webdriver.pageObjects.bbc;
 import static com.alien.utils.webdriver.pageObjects.State.ELEMENT_IS_CLICKABLE;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -25,7 +26,7 @@ public class RegisterDobPage extends PageObject {
     
     @FindBy(xpath = "//div[contains(@class, 'for-message--error')]")
     private WebElement errorMessage;
-    
+        
     
     public RegisterDobPage(final WebDriver webDriver) {
         super(webDriver);      
@@ -34,16 +35,19 @@ public class RegisterDobPage extends PageObject {
     
     public void enterDay(String day) {
         this.day.sendKeys(day);
+        this.day.sendKeys(Keys.TAB);
     }
     
     public void enterMonth(String month) {
         this.month.sendKeys(month);
+        this.month.sendKeys(Keys.TAB);
     }
 
     public void enterYear(String year) {
         this.year.sendKeys(year);
+        this.year.sendKeys(Keys.TAB);
     }
-    
+        
     public String getErrorMessage() {
         return errorMessage.getText();
     }
