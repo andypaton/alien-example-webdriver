@@ -41,26 +41,6 @@ public class BbcStep extends BaseStep {
 	    this.scenario = scenario;
 	}
 	
-//	@Given("^URL \"(.*)\" is opened in \"(Firefox|Chrome)\"$")
-//	public void go_to_url(String url,  String driver) throws Throwable {
-//
-//		switch (driver) {
-//		
-//		case "Firefox": 
-//			webDriver = new FirefoxDriver();
-//	        System.setProperty("web.driver","firefox");
-//		    break;
-//
-//		case "Chrome": 
-//			webDriver = new ChromeDriver();
-//	        System.setProperty("web.driver","chrome");
-//		    break;
-//		    
-//		}
-//		webDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-//      webDriver.navigate().to(url);
-//	}
-	
 	@Given("^the BBC home page is opened in \"(firefox|chrome)\"$")
 	public void bbc_home_page(String driver) throws Throwable {
 
@@ -175,6 +155,9 @@ public class BbcStep extends BaseStep {
 	
 	@After
 	public void teardown(Scenario scenario) {
-		webDriverUtility.closeDriver();
+		
+		if (webDriverUtility != null) {
+		    webDriverUtility.closeDriver();
+		}
 	}
 }

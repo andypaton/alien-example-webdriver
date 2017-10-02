@@ -6,6 +6,13 @@ Feature: obtain weather reports
   So that I can pack the correct clothes
   
   
+  Scenario: Register - happy path
+    Given the weather home page is opened in "firefox"
+    And the Profile button is clicked
+    And the Sign Up link is selected
+    # to be continued
+    
+    @wip
   Scenario Outline: Sign up to the the weather website
     Given the weather page is opened in "<browser>"
     When the weather home page has loaded
