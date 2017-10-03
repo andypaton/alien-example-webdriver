@@ -1,5 +1,6 @@
 package com.alien.examples.webdriver.steps;
 
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import com.alien.examples.webdriver.pageObjects.weather.CreateProfilePage;
@@ -58,6 +59,7 @@ public class WeatherStep extends BaseStep {
 
 		weatherHomePage.clickProfileButton();
 
+		assertTrue("Sign up is not displayed", weatherHomePage.isSignUpDisplayed());
 	    // taking screenshots are very slow
 //        webDriverUtility.takeScreenShot();
 	}
