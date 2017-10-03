@@ -61,9 +61,6 @@ public class BbcStep extends BaseStep {
 		webDriverUtility.registerTargetEndpoint(BBC_HOME_PAGE, false);
 		
 		bbcHomePage = new BbcHomePage(getWebDriver());
-		
-	    // taking screenshots are very slow
-//		webDriverUtility.takeScreenShot();
 	}
 
 	@Then("^BBC Cookies policy is displayed$")
@@ -89,9 +86,6 @@ public class BbcStep extends BaseStep {
 		default:
 			fail("Unknown link");
 		}
-		
-	    // taking screenshots are very slow
-//        webDriverUtility.takeScreenShot();
 	}
 
 	@Then("^the \"([^\"]*)\" page is displayed$")
@@ -118,9 +112,6 @@ public class BbcStep extends BaseStep {
 	@Then("^\"(.*)\" registration warning is displayed$")
 	public void registration_warning_displayed(String warning) throws Throwable {
 		 
-	    // taking screenshots are very slow
-        webDriverUtility.takeScreenShot();
-        
 		assertTrue(registerAddressPage.getErrorMessage(), registerAddressPage.getErrorMessage().contains(warning));
 	}
 	
@@ -129,9 +120,6 @@ public class BbcStep extends BaseStep {
 		 registerDobPage.enterDay("05");
 		 registerDobPage.enterMonth("11");
 		 registerDobPage.enterYear("1999");
-
-		 // taking screenshots are very slow
-//         webDriverUtility.takeScreenShot();
 
 		 registerAddressPage = registerDobPage.next();
 
@@ -142,9 +130,6 @@ public class BbcStep extends BaseStep {
 		 //		 registerAddressPage.enterPostcode("G1 7BC");;
 		 registerAddressPage.selectGender(Gender.MALE);
 		 registerAddressPage.emailUpdates(false);;
-
-		 // taking screenshots are very slow
-//         webDriverUtility.takeScreenShot();
         
          registerAddressPage.register();
 	}
@@ -157,6 +142,7 @@ public class BbcStep extends BaseStep {
 	public void teardown(Scenario scenario) {
 		
 		if (webDriverUtility != null) {
+			webDriverUtility.takeScreenShot();
 		    webDriverUtility.closeDriver();
 		}
 	}

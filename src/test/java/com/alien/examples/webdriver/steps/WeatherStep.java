@@ -12,6 +12,7 @@ import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
 public class WeatherStep extends BaseStep {
@@ -34,13 +35,12 @@ public class WeatherStep extends BaseStep {
 
 		switch (driver) {
 		
-		case "firefox": 
-	        System.setProperty("web.driver","firefox");
-		    break;
-
-		case "chrome": 
-	        System.setProperty("web.driver","chrome");
-		    break;
+	    case "firefox": 
+            System.setProperty("web.driver","firefox");
+            break;
+	    case "chrome": 
+	    	System.setProperty("web.driver","chrome");
+	    	break;
 		    
 		}
 		
@@ -49,28 +49,26 @@ public class WeatherStep extends BaseStep {
 		webDriverUtility.registerTargetEndpoint(WEATHER_HOME_PAGE, false);
 		
 		weatherHomePage = new WeatherHomePage(getWebDriver());
-		
-	    // taking screenshots are very slow
-//		webDriverUtility.takeScreenShot();
 	}
 	
 	@When("^the Profile button is clicked$")
 	public void the_profile_button_clicked() throws Throwable {
 
-		weatherHomePage.clickProfileButton();
+	    weatherHomePage.clickProfileButton();
 
-		assertTrue("Sign up is not displayed", weatherHomePage.isSignUpDisplayed());
-	    // taking screenshots are very slow
-//        webDriverUtility.takeScreenShot();
-	}
+	    assertTrue("Sign up is not displayed", weatherHomePage.isSignUpDisplayed());
+    }
 	
 	@When("^the Sign Up link is selected$")
 	public void the_link_is_selected() throws Throwable {
 
 		createProfilePage = weatherHomePage.signUp();
-
-	    // taking screenshots are very slow
-//        webDriverUtility.takeScreenShot();
+	}
+	
+	@Then("^the Create Profile page is displayed$")
+	public void create_prfile_displayed() throws Throwable{
+		
+		assertTrue("Create Profile page is not displayed", createProfilePage.isInitialized());
 	}
 
 	private CucumberWebDriver getWebDriver() {
@@ -81,6 +79,7 @@ public class WeatherStep extends BaseStep {
 	public void teardown(Scenario scenario) {
 		
 		if (webDriverUtility != null) {
+		    webDriverUtility.takeScreenShot();
 		    webDriverUtility.closeDriver();
 		}
 	}

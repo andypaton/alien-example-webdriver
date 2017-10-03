@@ -9,8 +9,8 @@ Feature: obtain weather reports
   Scenario: Register - happy path
     Given the weather home page is opened in "firefox"
     And the Profile button is clicked
-    And the Sign Up link is selected
-    # to be continued
+    When the Sign Up link is selected
+    Then the Create Profile page is displayed
     
     @wip
   Scenario Outline: Sign up to the the weather website
