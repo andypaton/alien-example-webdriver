@@ -11,17 +11,6 @@ import com.alien.utils.webdriver.CucumberWebDriver;
 @ComponentScan(basePackages={"com.alien.examples.webdriver"})
 public class CucumberConfig {
 	
-//	@Bean(destroyMethod="quit")
-//	WebDriver webDriver() {
-//		
-//	    System.setProperty("webdriver.gecko.driver", "/Users/andypaton/GeckoDriver/geckodriver");
-//	    System.setProperty("webdriver.chrome.driver", "/Users/andypaton/eclipse-workspace/webdriver-example/src/test/resources/drivers/chrome/chromedriver");
-//
-//	    WebDriver webdriver =  null;
-//
-//		return webdriver;
-//	}
-	
 	@Bean(destroyMethod="quit")
 	CucumberWebDriver webDriver() {
 		CucumberWebDriver webdriver =  null;

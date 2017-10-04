@@ -12,21 +12,20 @@ import com.alien.utils.webdriver.pageObjects.PageObject;
 
 public class CreateProfilePage extends PageObject {
 
-	private static final String SIGN_HEADER_XPATH = "//*[contains(@class,'sign-header') and contains(text(),'Create your profile')]";
-	
-	@FindBy(xpath = SIGN_HEADER_XPATH)
-	private WebElement header;
+    private static final String SIGN_HEADER_XPATH = "//*[contains(@class,'sign-header') and contains(text(),'Create your profile')]";
+    
+    @FindBy(xpath = SIGN_HEADER_XPATH)
+    private WebElement header;
 
-	
+    
     public CreateProfilePage(final WebDriver webDriver) {
         super(webDriver);      
         waitForElement(By.xpath(SIGN_HEADER_XPATH), ELEMENT_IS_VISIBLE);
-		assertTrue(this.isInitialized());		
+        assertTrue(this.isInitialized());        
     }
-	
-	public boolean isInitialized() {
-		return header.isDisplayed();
-	}
-	
-	
+    
+    public boolean isInitialized() {
+        return header.isDisplayed();
+    }
+    
 }

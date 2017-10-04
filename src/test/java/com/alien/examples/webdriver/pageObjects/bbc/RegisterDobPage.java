@@ -11,7 +11,7 @@ import org.openqa.selenium.support.FindBy;
 import com.alien.utils.webdriver.pageObjects.PageObject;
 
 public class RegisterDobPage extends PageObject {
-	
+    
     @FindBy(id = "day-input")
     private WebElement day;
     
@@ -54,7 +54,7 @@ public class RegisterDobPage extends PageObject {
     
     public RegisterAddressPage next() {
         next.click();
-		return new RegisterAddressPage(webDriver);
+        return new RegisterAddressPage(webDriver);
     }
 
 }

@@ -13,7 +13,10 @@ import com.alien.examples.webdriver.helpers.Gender;
 import com.alien.utils.webdriver.pageObjects.PageObject;
 
 public class RegisterAddressPage extends PageObject {
-	
+    
+    private final static String LIST_ITEM_LOCATOR = "//li[contains(., '%s')]"; // partial text match
+    private final static String ERROR_MESSAGE_CLASSNAME = "form-message__text"; 
+
     @FindBy(id = "email-input")
     private WebElement email;
     
@@ -41,8 +44,6 @@ public class RegisterAddressPage extends PageObject {
     @FindBy(id = "submit-button")
     private WebElement register;
     
-    private final static String LIST_ITEM_LOCATOR = "//li[contains(., '%s')]"; // partial text match
-    private final static String ERROR_MESSAGE_CLASSNAME = "form-message__text"; 
     
     
     public RegisterAddressPage(final WebDriver webDriver) {
@@ -70,36 +71,36 @@ public class RegisterAddressPage extends PageObject {
     }
     
     public void selectHometown(String selection) {
-    	
+        
         String xpath = String.format(LIST_ITEM_LOCATOR, selection);  
         
         waitForElement(By.xpath(xpath), ELEMENT_IS_VISIBLE);
-        		
-		webDriver.findElement(By.xpath(xpath)).click();
+                
+        webDriver.findElement(By.xpath(xpath)).click();
         this.hometown.sendKeys(Keys.TAB);
     }
     
     public void emailUpdates(boolean sendEmail) {
-    	
-      	if (sendEmail){
-     		this.yesPlease.click();;    		
-    	    }else{
-    		    this.noThanks.click();;    		
-    	    }
+        
+        if (sendEmail){
+            this.yesPlease.click();;            
+        }else{
+            this.noThanks.click();;            
+        }
     }
     
     public void selectGender(Gender gender){
-      	Select dropdown = new Select(genderDropdown);
-    	    dropdown.selectByVisibleText(gender.value());
+        Select dropdown = new Select(genderDropdown);
+        dropdown.selectByVisibleText(gender.value());
     }
 
     public String getErrorMessage() {
-     	waitForElement(By.className(ERROR_MESSAGE_CLASSNAME), ELEMENT_IS_VISIBLE);
+        waitForElement(By.className(ERROR_MESSAGE_CLASSNAME), ELEMENT_IS_VISIBLE);
         return webDriver.findElement(By.className(ERROR_MESSAGE_CLASSNAME)).getText();
     }
     
     public void register() {
-    	    register.click();
+        register.click();
     }
 
 }

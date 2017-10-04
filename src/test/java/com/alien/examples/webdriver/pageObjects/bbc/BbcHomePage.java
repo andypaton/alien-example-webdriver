@@ -11,12 +11,6 @@ import org.openqa.selenium.support.FindBy;
 import com.alien.utils.webdriver.pageObjects.PageObject;
 
 public class BbcHomePage extends PageObject {
-	
-    @FindBy(id = "bbccookies")
-    private WebElement bbcCookies;
-    
-    @FindBy(id = "idcta-username")
-    private WebElement signInLink;
     
     private static final String UNUSED_EXAMPLE_XPATH_1 ="//*[@type='radio' and @checked='checked']";
     private static final String UNUSED_EXAMPLE_XPATH_2 = "//a[text()='Staging Area']";
@@ -26,6 +20,14 @@ public class BbcHomePage extends PageObject {
     private static final String UNUSED_EXAMPLE_XPATH_6 = "//*[@type='button']/*[text() = 'Cancel']";
     private static final String UNUSED_EXAMPLE_XPATH_7 = ".//*[contains(text(),'SUCCESS')]";
     private static final String UNUSED_EXAMPLE_XPATH_8 = "//*[@id=\"job\"]/table/tbody/tr/td[4]/a";
+
+    
+    @FindBy(id = "bbccookies")
+    private WebElement bbcCookies;
+    
+    @FindBy(id = "idcta-username")
+    private WebElement signInLink;
+    
     
     
     public BbcHomePage(final WebDriver webDriver) {
@@ -33,19 +35,19 @@ public class BbcHomePage extends PageObject {
 //        waitForPageToLoad(this.getClass());  // cant use this if all elements are not going to be visible
 //        waitForLoad();
         waitForElement(By.id("bbccookies"), ELEMENT_IS_VISIBLE);
-		assertTrue(this.isInitialized());		
+        assertTrue(this.isInitialized());        
     }
 
-	public boolean isInitialized() {
-		return bbcCookies.isDisplayed();
-	}
+    public boolean isInitialized() {
+        return bbcCookies.isDisplayed();
+    }
 
     public String getCookieMessage(){
-    	return bbcCookies.getText();
+        return bbcCookies.getText();
     }
     
-	public SignInPage signIn(){
-		signInLink.click();
-		return new SignInPage(webDriver);
-	}
+    public SignInPage signIn(){
+        signInLink.click();
+        return new SignInPage(webDriver);
+    }
 }

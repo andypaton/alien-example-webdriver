@@ -33,7 +33,6 @@
 			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/junit/junit -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -44,7 +43,6 @@
 
 		<!-- SPRINGFRAMEWORK -->
 
-		<!-- https://mvnrepository.com/artifact/org.springframework/spring-test -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
@@ -52,7 +50,6 @@
 			<scope>test</scope>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
