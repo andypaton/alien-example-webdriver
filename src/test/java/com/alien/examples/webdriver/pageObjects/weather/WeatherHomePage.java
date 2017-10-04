@@ -41,10 +41,8 @@ public class WeatherHomePage extends PageObject {
 		return profileButton.isDisplayed();
 	}
 	
-	public void clickProfileButton(){
-//        waitForElement(By.cssSelector(PROFILE_BUTTON_CSS), ELEMENT_IS_CLICKABLE);
-        pause(THIRTY_SECONDS);
-		profileButton.click();
+	public void clickProfileButton(){        
+        clickUntilElementIsDisplayed(profileButton, signUp);
 	}
 	
 	public boolean isSignUpDisplayed(){
