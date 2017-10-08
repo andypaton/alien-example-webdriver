@@ -44,7 +44,7 @@ public class WeatherStep extends BaseStep {
 		    
 		}
 		
-		webDriverUtility = new WebDriverUtility();
+//		webDriverUtility = new WebDriverUtility();
 		webDriverUtility.registerScenario(scenario);
 		webDriverUtility.registerTargetEndpoint(WEATHER_HOME_PAGE, false);
 		
@@ -75,13 +75,13 @@ public class WeatherStep extends BaseStep {
 		return webDriverUtility.getWebDriver();
 	}
 	
-	@After
-	public void teardown(Scenario scenario) {
-		
-		if (webDriverUtility != null) {
-		    webDriverUtility.takeScreenShot();
-		    webDriverUtility.closeDriver();
-		}
-	}
+//	@After
+//	public void teardown(Scenario scenario) {
+//		
+//		if (webDriverUtility != null) {
+//		    webDriverUtility.takeScreenShot();
+//		    webDriverUtility.closeDriver();
+//		}
+//	}
 }
 

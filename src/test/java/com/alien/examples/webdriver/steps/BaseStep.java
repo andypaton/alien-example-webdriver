@@ -12,6 +12,6 @@ public class BaseStep {
 	
 	@Autowired protected OutputHelper outputHelper;
 	
-	protected WebDriverUtility webDriverUtility;
+	@Autowired protected WebDriverUtility webDriverUtility;
 
 }

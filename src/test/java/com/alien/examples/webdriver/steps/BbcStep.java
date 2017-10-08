@@ -56,7 +56,7 @@ public class BbcStep extends BaseStep {
 		    
 		}
 		
-		webDriverUtility = new WebDriverUtility();
+//		webDriverUtility = new WebDriverUtility();
 		webDriverUtility.registerScenario(scenario);
 		webDriverUtility.registerTargetEndpoint(BBC_HOME_PAGE, false);
 		
@@ -138,12 +138,12 @@ public class BbcStep extends BaseStep {
 		return webDriverUtility.getWebDriver();
 	}
 	
-	@After
-	public void teardown(Scenario scenario) {
-		
-		if (webDriverUtility != null) {
-			webDriverUtility.takeScreenShot();
-		    webDriverUtility.closeDriver();
-		}
-	}
+//	@After
+//	public void teardown(Scenario scenario) {
+//		
+//		if (webDriverUtility != null) {
+//			webDriverUtility.takeScreenShot();
+//		    webDriverUtility.closeDriver();
+//		}
+//	}
 }
