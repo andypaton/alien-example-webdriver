@@ -27,11 +27,13 @@ public class BbcHomePage extends PageObject {
     private static final String UNUSED_EXAMPLE_CSS_2 = "div[id$=test]";  // ends-with
     private static final String UNUSED_EXAMPLE_CSS_3 = "div[id*=test]";  // contains
 
-    
-    @FindBy(id = "bbccookies")
+    private static final String SIGN_IN_ID = "idcta-username";  
+    private static final String COOKIES_ID = "bbccookies";  
+
+    @FindBy(id = COOKIES_ID)
     private WebElement bbcCookies;
     
-    @FindBy(id = "idcta-username")
+    @FindBy(id = SIGN_IN_ID)
     private WebElement signInLink;
     
     
@@ -40,12 +42,12 @@ public class BbcHomePage extends PageObject {
         super(webDriver);      
 //        waitForPageToLoad(this.getClass());  // cant use this if all elements are not going to be visible
 //        waitForLoad();
-        waitForElement(By.id("bbccookies"), ELEMENT_IS_VISIBLE);
+        waitForElement(By.id(SIGN_IN_ID), ELEMENT_IS_VISIBLE);
         assertTrue(this.isInitialized());        
     }
 
     public boolean isInitialized() {
-        return bbcCookies.isDisplayed();
+        return signInLink.isDisplayed();
     }
 
     public String getCookieMessage(){

@@ -11,7 +11,7 @@ import com.alien.utils.webdriver.pageObjects.PageObject;
 
 public class SignInPage extends PageObject {
 	
-    @FindBy(xpath = "//span[@data-reactid='53']")
+    @FindBy(css = ".link--primary > span:nth-child(1)")
     private WebElement registerNow;
     
     @FindBy(id = "username-input")

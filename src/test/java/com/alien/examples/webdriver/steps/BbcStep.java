@@ -3,24 +3,32 @@ package com.alien.examples.webdriver.steps;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import java.io.IOException;
+
+import org.apache.commons.lang.RandomStringUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.alien.examples.webdriver.helpers.Gender;
+import com.alien.examples.webdriver.helpers.OutputHelper;
 import com.alien.examples.webdriver.pageObjects.bbc.BbcHomePage;
 import com.alien.examples.webdriver.pageObjects.bbc.RegisterAddressPage;
 import com.alien.examples.webdriver.pageObjects.bbc.RegisterDobPage;
 import com.alien.examples.webdriver.pageObjects.bbc.SignInPage;
-import com.alien.utils.webdriver.CucumberWebDriver;
-import com.alien.utils.webdriver.WebDriverUtility;
+import com.alien.utils.webdriver.WebDriverFactory;
 
 import cucumber.api.Scenario;
-import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
-import org.apache.commons.lang.RandomStringUtils;
+public class BbcStep {
+	
+	@Autowired protected OutputHelper outputHelper;
 
-public class BbcStep extends BaseStep {
 
 	private Scenario scenario;
 	
@@ -40,29 +48,16 @@ public class BbcStep extends BaseStep {
 	public void before(Scenario scenario) {
 	    this.scenario = scenario;
 	}
-	
-	@Given("^the BBC home page is opened in \"(firefox|chrome)\"$")
-	public void bbc_home_page(String driver) throws Throwable {
 
-		switch (driver) {
+	@Given("^the BBC home page is opened$")
+	public void bbc_home_page_opened() throws Throwable {
 		
-		case "firefox": 
-	        System.setProperty("web.driver","firefox");
-		    break;
+		getWebdriver().get(BBC_HOME_PAGE);
+		
+		bbcHomePage = new BbcHomePage(getWebdriver());
 
-		case "chrome": 
-	        System.setProperty("web.driver","chrome");
-		    break;
-		    
-		}
-		
-//		webDriverUtility = new WebDriverUtility();
-		webDriverUtility.registerScenario(scenario);
-		webDriverUtility.registerTargetEndpoint(BBC_HOME_PAGE, false);
-		
-		bbcHomePage = new BbcHomePage(getWebDriver());
 	}
-
+	
 	@Then("^BBC Cookies policy is displayed$")
 	public void bbc_cookies_displayed() throws Throwable {
 
@@ -92,7 +87,7 @@ public class BbcStep extends BaseStep {
 	public void the_page_is_displayed(String page) throws Throwable {
 
 		 // taking screenshots are very slow
-         webDriverUtility.takeScreenShot();
+		takeScreenshot();
 	}
 
 	@When("^existing registration details are entered$")
@@ -134,9 +129,35 @@ public class BbcStep extends BaseStep {
          registerAddressPage.register();
 	}
 	
-	private CucumberWebDriver getWebDriver() {
-		return webDriverUtility.getWebDriver();
+	private WebDriver getWebdriver(){
+		return WebDriverFactory.getWebDriver();
 	}
+	
+//	private CucumberWebDriver getWebDriver() {
+//		return webDriverUtility.getWebDriver();
+//	}
+	
+//	@Given("^the BBC home page is opened in \"(firefox|chrome)\"$")
+//	public void bbc_home_page(String driver) throws Throwable {
+//
+//		switch (driver) {
+//		
+//		case "firefox": 
+//	        System.setProperty("web.driver","firefox");
+//		    break;
+//
+//		case "chrome": 
+//	        System.setProperty("web.driver","chrome");
+//		    break;
+//		    
+//		}
+//		
+////		webDriverUtility = new WebDriverUtility();
+//		webDriverUtility.registerScenario(scenario);
+//		webDriverUtility.registerTargetEndpoint(BBC_HOME_PAGE, false);
+//		
+//		bbcHomePage = new BbcHomePage(getWebDriver());
+//	}
 	
 //	@After
 //	public void teardown(Scenario scenario) {
@@ -146,4 +167,14 @@ public class BbcStep extends BaseStep {
 //		    webDriverUtility.closeDriver();
 //		}
 //	}
+	
+    private void takeScreenshot() throws IOException {
+        
+    	scenario.write("\n");
+        
+        if (WebDriverFactory.webDriverExists()) {
+            byte[] scrFile = ((TakesScreenshot) WebDriverFactory.getWebDriver()).getScreenshotAs(OutputType.BYTES);
+            scenario.embed(scrFile, "image/jpeg");
+        }    
+    }
 }

@@ -7,24 +7,14 @@ Feature: obtain weather reports
   
   
   Scenario: Register - happy path
-    Given the weather home page is opened in "firefox"
+    Given the weather home page is opened
     And the Profile button is clicked
     When the Sign Up link is selected
     Then the Create Profile page is displayed
     
-    @wip
-  Scenario Outline: Sign up to the the weather website
-    Given the weather page is opened in "<browser>"
-    When the weather home page has loaded
-    Then the Profile link is displayed
-    Examples:
-    |browser|
-    |Chrome|
-    |Firefox|
-
   @wip
   Scenario: Sign up details displayed
-    Given the weather page is opened in "Firefox"
+    Given the weather page is opened
     When the "Sign up" is selected from profile
     Then Sign up entry details are displayed
       
