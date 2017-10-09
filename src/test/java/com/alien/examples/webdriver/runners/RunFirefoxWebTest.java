@@ -16,6 +16,7 @@ import cucumber.api.junit.Cucumber;
         features="classpath:features", 
         tags={
         		"~@wip"
+//        		,"@andy"
 //        		,"@weather"
         		}, 
         monochrome = true

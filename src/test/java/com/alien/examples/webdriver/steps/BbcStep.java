@@ -10,27 +10,34 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
 
+import com.alien.examples.webdriver.config.CucumberConfig;
 import com.alien.examples.webdriver.helpers.Gender;
 import com.alien.examples.webdriver.helpers.OutputHelper;
 import com.alien.examples.webdriver.pageObjects.bbc.BbcHomePage;
 import com.alien.examples.webdriver.pageObjects.bbc.RegisterAddressPage;
 import com.alien.examples.webdriver.pageObjects.bbc.RegisterDobPage;
 import com.alien.examples.webdriver.pageObjects.bbc.SignInPage;
+import com.alien.examples.webdriver.runtime.RuntimeState;
 import com.alien.utils.webdriver.WebDriverFactory;
 
-import cucumber.api.Scenario;
-import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
+@ContextConfiguration(classes=CucumberConfig.class)
 public class BbcStep {
 	
-	@Autowired protected OutputHelper outputHelper;
+	@Autowired 
+    private OutputHelper outputHelper;
 
-
-	private Scenario scenario;
+	@Autowired 
+    private RuntimeState runtimeState;
+	
+	@Autowired 
+    private WebDriver webDriver;
+	
 	
 	private static String BBC_HOME_PAGE = "http://www.bbc.co.uk";
 
@@ -44,18 +51,15 @@ public class BbcStep {
     private final static String HOMETOWN = "Glasgow";
     private final static String HOMETOWN_SELECTION = "Glasgow, Glasgow City";
 	
-	@Before
-	public void before(Scenario scenario) {
-	    this.scenario = scenario;
-	}
 
 	@Given("^the BBC home page is opened$")
 	public void bbc_home_page_opened() throws Throwable {
 		
-		getWebdriver().get(BBC_HOME_PAGE);
+		webDriver.get(BBC_HOME_PAGE);
 		
-		bbcHomePage = new BbcHomePage(getWebdriver());
-
+		bbcHomePage = new BbcHomePage(webDriver);
+		
+		outputHelper.showMessage("my headr", "my msg");;
 	}
 	
 	@Then("^BBC Cookies policy is displayed$")
@@ -86,8 +90,8 @@ public class BbcStep {
 	@Then("^the \"([^\"]*)\" page is displayed$")
 	public void the_page_is_displayed(String page) throws Throwable {
 
-		 // taking screenshots are very slow
-		takeScreenshot();
+		 // warning : taking screenshots are very slow
+		outputHelper.takeScreenshot();
 	}
 
 	@When("^existing registration details are entered$")
@@ -128,53 +132,5 @@ public class BbcStep {
         
          registerAddressPage.register();
 	}
-	
-	private WebDriver getWebdriver(){
-		return WebDriverFactory.getWebDriver();
-	}
-	
-//	private CucumberWebDriver getWebDriver() {
-//		return webDriverUtility.getWebDriver();
-//	}
-	
-//	@Given("^the BBC home page is opened in \"(firefox|chrome)\"$")
-//	public void bbc_home_page(String driver) throws Throwable {
-//
-//		switch (driver) {
-//		
-//		case "firefox": 
-//	        System.setProperty("web.driver","firefox");
-//		    break;
-//
-//		case "chrome": 
-//	        System.setProperty("web.driver","chrome");
-//		    break;
-//		    
-//		}
-//		
-////		webDriverUtility = new WebDriverUtility();
-//		webDriverUtility.registerScenario(scenario);
-//		webDriverUtility.registerTargetEndpoint(BBC_HOME_PAGE, false);
-//		
-//		bbcHomePage = new BbcHomePage(getWebDriver());
-//	}
-	
-//	@After
-//	public void teardown(Scenario scenario) {
-//		
-//		if (webDriverUtility != null) {
-//			webDriverUtility.takeScreenShot();
-//		    webDriverUtility.closeDriver();
-//		}
-//	}
-	
-    private void takeScreenshot() throws IOException {
-        
-    	scenario.write("\n");
-        
-        if (WebDriverFactory.webDriverExists()) {
-            byte[] scrFile = ((TakesScreenshot) WebDriverFactory.getWebDriver()).getScreenshotAs(OutputType.BYTES);
-            scenario.embed(scrFile, "image/jpeg");
-        }    
-    }
+
 }

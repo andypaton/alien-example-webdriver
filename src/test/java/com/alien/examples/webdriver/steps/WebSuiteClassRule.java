@@ -9,7 +9,7 @@ public class WebSuiteClassRule extends ExternalResource {
 
     @Override
     protected void before() throws Throwable {
-    	WebDriverFactory.getWebDriver();
+        WebDriverFactory.getWebDriver();
     }
 
     @Override
