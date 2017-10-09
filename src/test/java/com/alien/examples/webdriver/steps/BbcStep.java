@@ -27,8 +27,8 @@ import cucumber.api.java.en.When;
 
 public class BbcStep {
 	
-	@Autowired protected OutputHelper outputHelper;
-
+	@Autowired 
+    private OutputHelper outputHelper;
 
 	private Scenario scenario;
 	

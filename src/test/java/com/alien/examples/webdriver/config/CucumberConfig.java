@@ -5,13 +5,13 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 import com.alien.examples.webdriver.helpers.OutputHelper;
+import com.alien.examples.webdriver.runtime.RuntimeState;
 
 
 @Configuration
 @ComponentScan(basePackages={"com.alien.examples.webdriver"})
 public class CucumberConfig {
-	
-	
+		
 //	@Bean(destroyMethod="quit")
 //	CucumberWebDriver webDriver() {
 //		CucumberWebDriver webdriver =  null;
@@ -27,6 +27,11 @@ public class CucumberConfig {
 	@Bean()
 	OutputHelper outputHelper() {
 		return new OutputHelper();
+	}
+	
+	@Bean
+	RuntimeState runtimeState() {
+		return new RuntimeState();
 	}
 
 }
