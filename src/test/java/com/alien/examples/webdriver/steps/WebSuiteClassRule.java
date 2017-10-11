@@ -11,11 +11,7 @@ public class WebSuiteClassRule extends ExternalResource {
 	
     @Override
     protected void before() throws Throwable {
-<<<<<<< HEAD
         WebDriverFactory.getWebDriver();
-=======
-    		WebDriverFactory.getWebDriver();
->>>>>>> branch 'master' of https://github.com/andypaton/alien-example-webdriver.git
     }
 
     @Override

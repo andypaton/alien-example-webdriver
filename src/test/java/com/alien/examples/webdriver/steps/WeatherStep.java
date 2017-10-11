@@ -12,11 +12,6 @@ import com.alien.examples.webdriver.pageObjects.weather.CreateProfilePage;
 import com.alien.examples.webdriver.pageObjects.weather.WeatherHomePage;
 import com.alien.examples.webdriver.runtime.RuntimeState;
 
-<<<<<<< HEAD
-=======
-import cucumber.api.Scenario;
-import cucumber.api.java.Before;
->>>>>>> branch 'master' of https://github.com/andypaton/alien-example-webdriver.git
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -25,7 +20,6 @@ import cucumber.api.java.en.When;
 public class WeatherStep {
 
 	@Autowired 
-<<<<<<< HEAD
     private RuntimeState runtimeState;
 	
 	@Autowired 
@@ -33,11 +27,7 @@ public class WeatherStep {
 	
 	@Autowired 
     private WebDriver webDriver;
-=======
-    private OutputHelper outputHelper;
 
-	private Scenario scenario;
->>>>>>> branch 'master' of https://github.com/andypaton/alien-example-webdriver.git
 	
 	private static String WEATHER_HOME_PAGE = "http://www.weather.com/";
 		

@@ -5,10 +5,7 @@ import static org.junit.Assert.fail;
 
 import java.io.IOException;
 
-import org.apache.commons.codec.binary.StringUtils;
 import org.apache.commons.lang.RandomStringUtils;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -21,8 +18,6 @@ import com.alien.examples.webdriver.pageObjects.bbc.BbcHomePage;
 import com.alien.examples.webdriver.pageObjects.bbc.RegisterAddressPage;
 import com.alien.examples.webdriver.pageObjects.bbc.RegisterDobPage;
 import com.alien.examples.webdriver.pageObjects.bbc.SignInPage;
-import com.alien.examples.webdriver.runtime.RuntimeState;
-import com.alien.utils.webdriver.WebDriverFactory;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -33,19 +28,13 @@ public class BbcStep {
 	
 	@Autowired 
     private OutputHelper outputHelper;
-
-<<<<<<< HEAD
-	@Autowired 
-    private RuntimeState runtimeState;
 	
 	@Autowired 
     private WebDriver webDriver;
 	
 	@Autowired 
     private PropertyHelper propertyHelper;
-=======
-	private Scenario scenario;
->>>>>>> branch 'master' of https://github.com/andypaton/alien-example-webdriver.git
+
 	
 	private static String BBC_HOME_PAGE = "http://www.bbc.co.uk";
 
