@@ -5,6 +5,7 @@ import static org.junit.Assert.fail;
 
 import java.io.IOException;
 
+import org.apache.commons.codec.binary.StringUtils;
 import org.apache.commons.lang.RandomStringUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -15,6 +16,7 @@ import org.springframework.test.context.ContextConfiguration;
 import com.alien.examples.webdriver.config.CucumberConfig;
 import com.alien.examples.webdriver.helpers.Gender;
 import com.alien.examples.webdriver.helpers.OutputHelper;
+import com.alien.examples.webdriver.helpers.PropertyHelper;
 import com.alien.examples.webdriver.pageObjects.bbc.BbcHomePage;
 import com.alien.examples.webdriver.pageObjects.bbc.RegisterAddressPage;
 import com.alien.examples.webdriver.pageObjects.bbc.RegisterDobPage;
@@ -38,6 +40,8 @@ public class BbcStep {
 	@Autowired 
     private WebDriver webDriver;
 	
+	@Autowired 
+    private PropertyHelper propertyHelper;
 	
 	private static String BBC_HOME_PAGE = "http://www.bbc.co.uk";
 
@@ -85,13 +89,14 @@ public class BbcStep {
 		default:
 			fail("Unknown link");
 		}
+		
+		takeScreenshot();
 	}
 
 	@Then("^the \"([^\"]*)\" page is displayed$")
 	public void the_page_is_displayed(String page) throws Throwable {
 
-		 // warning : taking screenshots are very slow
-		outputHelper.takeScreenshot();
+		takeScreenshot();
 	}
 
 	@When("^existing registration details are entered$")
@@ -103,7 +108,7 @@ public class BbcStep {
 	@When("^new registration details are entered$")
 	public void new_registration_details_are_entered() throws Throwable {
 		 
-		String username = RandomStringUtils.randomAlphabetic(5) + "blah.com";
+		String username = RandomStringUtils.randomAlphabetic(5) + "@blah.com";
 		
 		doRegistration(username);
 	}
@@ -114,12 +119,14 @@ public class BbcStep {
 		assertTrue(registerAddressPage.getErrorMessage(), registerAddressPage.getErrorMessage().contains(warning));
 	}
 	
-	private void doRegistration(String username){
+	private void doRegistration(String username) throws IOException{
 		
 		 registerDobPage.enterDay("05");
 		 registerDobPage.enterMonth("11");
 		 registerDobPage.enterYear("1999");
 
+		 takeScreenshot();
+		 
 		 registerAddressPage = registerDobPage.next();
 
 		 registerAddressPage.enterEmail(username);
@@ -131,6 +138,15 @@ public class BbcStep {
 		 registerAddressPage.emailUpdates(false);;
         
          registerAddressPage.register();
+
+         takeScreenshot();
 	}
 
+	
+	private void takeScreenshot() throws IOException{
+		
+		if (propertyHelper.showScreenshots()){
+			outputHelper.takeScreenshot();
+		}
+	}
 }

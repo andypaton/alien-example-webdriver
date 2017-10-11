@@ -11,21 +11,31 @@ import cucumber.api.junit.Cucumber;
 @RunWith(Cucumber.class)
 @CucumberOptions(
         strict=true, 
-        format={"progress","html:target/report/cucumber","json:target/report/cucumber/acceptance-test-report.json"}, 
+        format={"progress","html:target/report/cucumber","json:target/report/cucumber/report.json"}, 
         glue="com.alien.examples.webdriver.steps",
         features="classpath:features", 
         tags={
         		"~@wip"
-        		,"@bbc"
+        		,"@andy"
+//        		,"@bbc"
 //        		,"@weather"
         		}, 
         monochrome = true
         )
 
-public class RunChromeWebTest {
-    
+public class RunWebTest {
+	
     static {
-        System.setProperty("web.driver","chrome");
+    	
+    	if (System.getProperty("web.driver") == null){
+            System.setProperty("web.driver", "phantom");
+    	}
+    	
+    	if (System.getProperty("screenshots") == null){
+            System.setProperty("screenshots", "true");
+    	}
+    	
+    	System.out.println("***** web.driver = " + System.getProperty("web.driver") + " *****");
     }
     
     @ClassRule

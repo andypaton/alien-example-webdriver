@@ -1,4 +1,4 @@
-package com.alien.examples.webdriver.runners;
+package com.alien.examples.webdriver.runners.parallel;
 
 import com.alien.examples.webdriver.steps.WebSuiteClassRule;
 import org.junit.ClassRule;
@@ -11,21 +11,22 @@ import cucumber.api.junit.Cucumber;
 @RunWith(Cucumber.class)
 @CucumberOptions(
         strict=true, 
-        format={"progress","html:target/report/cucumber","json:target/report/cucumber/acceptance-test-report.json"}, 
+        format={"progress","html:target/report/cucumber/bbc","json:target/report/cucumber/bbc/report.json"}, 
         glue="com.alien.examples.webdriver.steps",
-        features="classpath:features", 
+        features="classpath:features/bbc", 
         tags={
         		"~@wip"
-//        		,"@andy"
-//        		,"@weather"
+        		,"@bbc"
         		}, 
         monochrome = true
         )
 
-public class RunFirefoxWebTest {
+public class RunBbcWebTest {
     
     static {
-        System.setProperty("web.driver","firefox");
+    	if (System.getProperty("web.driver") == null){
+            System.setProperty("web.driver","firefox");
+    	}
     }
     
     @ClassRule

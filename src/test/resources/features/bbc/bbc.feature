@@ -5,7 +5,6 @@ Feature: bbc home page
 	I want to navigate to their website
 	So that I can receive all the latest news
 
-@andy
   Scenario: Register - happy path
     Given the BBC home page is opened
     And the "Sign in" link is selected
@@ -13,6 +12,7 @@ Feature: bbc home page
     When new registration details are entered
     Then the "Confirmation" page is displayed
     
+  @andy
   Scenario: Register - existing user retries
     Given the BBC home page is opened
     And the "Sign in" link is selected

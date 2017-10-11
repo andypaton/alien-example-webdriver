@@ -1,12 +1,14 @@
 package com.alien.examples.webdriver.steps;
 
+import java.io.IOException;
+
 import org.junit.rules.ExternalResource;
 
 import com.alien.utils.webdriver.WebDriverFactory;
 
 
 public class WebSuiteClassRule extends ExternalResource {
-
+	
     @Override
     protected void before() throws Throwable {
         WebDriverFactory.getWebDriver();
@@ -14,7 +16,12 @@ public class WebSuiteClassRule extends ExternalResource {
 
     @Override
     protected void after() {
-        WebDriverFactory.getWebDriver().close();
+    	
+        try {
+			WebDriverFactory.getWebDriver().close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
         WebDriverFactory.clear();
     };
 

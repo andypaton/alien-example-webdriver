@@ -12,24 +12,30 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-		<test.runner>**/RunFirefoxWebtest.java</test.runner>
-		<target.directory>/Users/andypaton/eclipse-workspace/test-maven-project/target</target.directory>
+		<test.runner>**/RunWebTest.java</test.runner>
+		<parallel.test.runners>**/parallel/**/Run*WebTest.java</parallel.test.runners>
+
+        <skip.acceptance.test>false</skip.acceptance.test>
+        <show.screenshots>false</show.screenshots>
+		<cukes.forkCount>0</cukes.forkCount>
+		<cukes.reuseForks>true</cukes.reuseForks>
+		<!-- <target.directory>/Users/andypaton/eclipse-workspace/test-maven-project/target</target.directory> -->
 
 		<maven.compiler.source>1.7</maven.compiler.source>
 		<maven.compiler.target>1.7</maven.compiler.target>
 	</properties>
 
 	<dependencies>
-	
+
 		<dependency>
 			<groupId>com.alien.utils</groupId>
 			<artifactId>common-utils-report</artifactId>
 			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>com.alien.utils</groupId>
-	        <artifactId>common-utils-webdriver2</artifactId>
+			<artifactId>common-utils-webdriver2</artifactId>
 			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
 
@@ -69,7 +75,7 @@
 			<artifactId>cucumber-core</artifactId>
 			<version>1.1.5</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>info.cukes</groupId>
 			<artifactId>cucumber-jvm</artifactId>
@@ -133,24 +139,61 @@
 			<version>2.0.2-beta</version>
 		</dependency>
 
-
-		<!-- SELENIUM WEBDRIVER 
-
-		<dependency>
-			<groupId>org.seleniumhq.selenium</groupId>
-			<artifactId>selenium-java</artifactId>
-			<version>3.5.3</version>
-		</dependency>
-		<dependency>
-			<groupId>org.seleniumhq.selenium</groupId>
-			<artifactId>selenium-firefox-driver</artifactId>
-			<version>3.5.3</version>
-		</dependency>
-
--->
-
 	</dependencies>
 
+	<profiles>
+		<profile>
+			<id>firefox-test</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<webdriver>firefox</webdriver>
+				<skip.acceptance.test>false</skip.acceptance.test>
+				<acceptanceTest.runner>${test.runner}</acceptanceTest.runner>
+			</properties>
+		</profile>
+
+		<profile>
+			<id>chrome-test</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<properties>
+				<webdriver>chrome</webdriver>
+				<skip.acceptance.test>false</skip.acceptance.test>
+				<acceptanceTest.runner>${test.runner}</acceptanceTest.runner>
+			</properties>
+		</profile>
+		
+		<profile>
+            <id>phantom-test</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <webdriver>phantom</webdriver>
+                <skip.acceptance.test>false</skip.acceptance.test>
+                <acceptanceTest.runner>${test.runner}</acceptanceTest.runner>
+                <show.screenshots>true</show.screenshots>
+            </properties>
+        </profile>
+
+		<profile>
+			<id>parallel-firefox-tests</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<properties>
+				<webdriver>firefox</webdriver>
+				<skip.acceptance.test>false</skip.acceptance.test>
+				<cukes.forkCount>2</cukes.forkCount>
+				<cukes.reuseForks>true</cukes.reuseForks>
+				<acceptanceTest.runner>${parallel.test.runners}</acceptanceTest.runner>
+			</properties>
+		</profile>
+
+	</profiles>
 
 
 	<build>
@@ -193,35 +236,65 @@
 		</pluginManagement>
 
 		<plugins>
+
+			<!-- SUREFIRE : RUN UNIT TESTS -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>2.16</version>
 				<configuration>
 					<excludes>
-						<exclude>${test.runner}</exclude>
+						<exclude>**/*Run*Test.java</exclude>
 					</excludes>
 				</configuration>
 			</plugin>
+
+			<!-- FAILSAFE : RUN INTEGRATION TESTS -->
+
+			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-failsafe-plugin</artifactId> 
+				<version>2.16</version> <configuration> <failIfNoTests>false</failIfNoTests> 
+				<argLine>-XX:MaxPermSize=512m -Xms256M -Xmx1024m -XX:+UseConcMarkSweepGC 
+				-XX:+UseParNewGC -XX:+CMSParallelRemarkEnabled -XX:+CMSClassUnloadingEnabled 
+				</argLine> </configuration> <executions> <execution> <configuration> <skip>${skip.acceptance.test}</skip> 
+				<includes> <include>${acceptanceTest.runner}</include> </includes> <systemProperties> 
+				<systemProperty> <key>web.driver</key> <value>${web.driver}</value> </systemProperty> 
+				</systemProperties> </configuration> <id>cucumber-integration-test</id> <goals> 
+				<goal>integration-test</goal> <goal>verify</goal> </goals> </execution> </executions> 
+				</plugin> -->
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-failsafe-plugin</artifactId>
 				<version>2.16</version>
 				<configuration>
-					<failIfNoTests>false</failIfNoTests>
-					<argLine>-XX:MaxPermSize=512m -Xms256M -Xmx1024m
+					<skip>${skip.acceptance.test}</skip>
+					<failIfNoTests>true</failIfNoTests>
+					<argLine>-XX:MaxPermSize=512m -Xms256M -Xmx1536m
 						-XX:+UseConcMarkSweepGC -XX:+UseParNewGC
-						-XX:+CMSParallelRemarkEnabled -XX:+CMSClassUnloadingEnabled
-					</argLine>
+						-XX:+CMSParallelRemarkEnabled
+						-XX:+CMSClassUnloadingEnabled</argLine>
+					<systemPropertyVariables>
+                        <web.driver>${webdriver}</web.driver>
+                        <screenshots>${show.screenshots}</screenshots>
+                    </systemPropertyVariables>
 				</configuration>
 				<executions>
 					<execution>
 						<configuration>
+							<failIfNoTests>true</failIfNoTests>
 							<includes>
-								<include>${test.runner}</include>
+								<include>${acceptanceTest.runner}</include>
 							</includes>
+							<forkCount>${cukes.forkCount}</forkCount>
+							<reuseForks>${cukes.reuseForks}</reuseForks>
+							<systemProperties>
+								<systemProperty>
+									<key>web.driver</key>
+									<value>${web.driver}</value>
+								</systemProperty>
+							</systemProperties>
 						</configuration>
-						<id>bbc-integration-test</id>
+						<id>cucumber-acceptance-test</id>
 						<goals>
 							<goal>integration-test</goal>
 							<goal>verify</goal>
@@ -229,6 +302,34 @@
 					</execution>
 				</executions>
 			</plugin>
+			
+            <!--Extract common-utils-webdriver's resources-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>2.2</version>
+                <executions>
+                    <execution>
+                        <id>unpack</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>unpack-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <includeGroupIds>com.alien.utils</includeGroupIds>
+                            <includeArtifactIds>common-utils-webdriver2</includeArtifactIds>
+                            <excludeTransitive>true</excludeTransitive>
+                            <overWrite>true</overWrite>
+                            <outputDirectory>${project.build.directory}/webdriver-resources</outputDirectory>
+                            <excludes>org/**,META-INF/**</excludes>
+                            <overWriteReleases>true</overWriteReleases>
+                            <overWriteSnapshots>true</overWriteSnapshots>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>	
+
+			<!-- GENERATE CUCUMBER REPORT MATCHING JENKINS PLUGIN -->
 
 			<plugin>
 				<groupId>net.masterthought</groupId>
@@ -242,27 +343,26 @@
 							<goal>generate</goal>
 						</goals>
 						<configuration>
-							<outputDirectory>${target.directory}/cucumber-html-reports</outputDirectory>
-							<cucumberOutput>${target.directory}/report/cucumber/test-report.json</cucumberOutput>
+							<cucumberOutput>${project.build.directory}/report/cucumber/report.json</cucumberOutput>
+							<outputDirectory>${project.build.directory}/cucumber-html-reports</outputDirectory>
 						</configuration>
 					</execution>
 				</executions>
 			</plugin>
+
 		</plugins>
 
+        <!-- Add webdriver resource location -->
+        <resources>
+            <resource>
+                <filtering>false</filtering>
+                <directory>${project.build.directory}/webdriver-resources</directory>
+            </resource>
+            <resource>
+                <filtering>false</filtering>
+                <directory>${basedir}/src/main/resources</directory>
+            </resource>
+        </resources>
 	</build>
-
-	<profiles>
-		<profile>
-			<id>acceptance-test</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
-			<properties>
-				<skip.acceptance.test>false</skip.acceptance.test>
-				<acceptanceTest.runner>${test.runner}</acceptanceTest.runner>
-			</properties>
-		</profile>
-	</profiles>
 
 </project>
