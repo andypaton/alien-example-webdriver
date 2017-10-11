@@ -34,6 +34,7 @@ public class BbcStep {
 	@Autowired 
     private OutputHelper outputHelper;
 
+<<<<<<< HEAD
 	@Autowired 
     private RuntimeState runtimeState;
 	
@@ -42,6 +43,9 @@ public class BbcStep {
 	
 	@Autowired 
     private PropertyHelper propertyHelper;
+=======
+	private Scenario scenario;
+>>>>>>> branch 'master' of https://github.com/andypaton/alien-example-webdriver.git
 	
 	private static String BBC_HOME_PAGE = "http://www.bbc.co.uk";
 
