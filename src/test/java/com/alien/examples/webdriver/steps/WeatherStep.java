@@ -1,8 +1,8 @@
 package com.alien.examples.webdriver.steps;
 
+import static com.alien.examples.webdriver.runtime.WebDriverManager.getWebDriver;
 import static org.junit.Assert.assertTrue;
 
-import org.openqa.selenium.WebDriver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 
@@ -25,10 +25,6 @@ public class WeatherStep {
 	@Autowired 
     private OutputHelper outputHelper;
 	
-	@Autowired 
-    private WebDriver webDriver;
-
-	
 	private static String WEATHER_HOME_PAGE = "http://www.weather.com/";
 		
 	private WeatherHomePage weatherHomePage;
@@ -38,9 +34,9 @@ public class WeatherStep {
 	@Given("^the weather home page is opened$")
 	public void go_to_url() throws Throwable {
 		
-		webDriver.get(WEATHER_HOME_PAGE);
+		getWebDriver().get(WEATHER_HOME_PAGE);
 		
-		weatherHomePage = new WeatherHomePage(webDriver);
+		weatherHomePage = new WeatherHomePage(getWebDriver());
 		
 		outputHelper.showMessage("scenario tags", runtimeState.scenario.getSourceTagNames().toString());
 	}

@@ -16,7 +16,7 @@ import cucumber.api.junit.Cucumber;
         features="classpath:features", 
         tags={
         		"~@wip"
-        		,"@andy"
+//        		,"@andy"
 //        		,"@bbc"
 //        		,"@weather"
         		}, 
@@ -27,15 +27,15 @@ public class RunWebTest {
 	
     static {
     	
-    	if (System.getProperty("web.driver") == null){
-            System.setProperty("web.driver", "phantom");
-    	}
+    		if (System.getProperty("web.driver") == null){
+            System.setProperty("web.driver", "chrome");
+    		}
     	
-    	if (System.getProperty("screenshots") == null){
+    		if (System.getProperty("screenshots") == null){
             System.setProperty("screenshots", "true");
-    	}
+    		}
     	
-    	System.out.println("***** web.driver = " + System.getProperty("web.driver") + " *****");
+    		System.out.println("***** web.driver = " + System.getProperty("web.driver") + " *****");
     }
     
     @ClassRule

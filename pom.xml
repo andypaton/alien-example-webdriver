@@ -145,7 +145,7 @@
 		<profile>
 			<id>firefox-test</id>
 			<activation>
-				<activeByDefault>true</activeByDefault>
+				<activeByDefault>false</activeByDefault>
 			</activation>
 			<properties>
 				<webdriver>firefox</webdriver>
@@ -157,7 +157,7 @@
 		<profile>
 			<id>chrome-test</id>
 			<activation>
-				<activeByDefault>false</activeByDefault>
+				<activeByDefault>true</activeByDefault>
 			</activation>
 			<properties>
 				<webdriver>chrome</webdriver>
@@ -180,12 +180,12 @@
         </profile>
 
 		<profile>
-			<id>parallel-firefox-tests</id>
+			<id>parallel-chrome-tests</id>
 			<activation>
 				<activeByDefault>false</activeByDefault>
 			</activation>
 			<properties>
-				<webdriver>firefox</webdriver>
+				<webdriver>chrome</webdriver>
 				<skip.acceptance.test>false</skip.acceptance.test>
 				<cukes.forkCount>2</cukes.forkCount>
 				<cukes.reuseForks>true</cukes.reuseForks>

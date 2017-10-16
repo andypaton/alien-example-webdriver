@@ -1,12 +1,12 @@
 package com.alien.examples.webdriver.steps;
 
+import static com.alien.examples.webdriver.runtime.WebDriverManager.getWebDriver;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.io.IOException;
 
 import org.apache.commons.lang.RandomStringUtils;
-import org.openqa.selenium.WebDriver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 
@@ -30,9 +30,6 @@ public class BbcStep {
     private OutputHelper outputHelper;
 	
 	@Autowired 
-    private WebDriver webDriver;
-	
-	@Autowired 
     private PropertyHelper propertyHelper;
 
 	
@@ -52,9 +49,9 @@ public class BbcStep {
 	@Given("^the BBC home page is opened$")
 	public void bbc_home_page_opened() throws Throwable {
 		
-		webDriver.get(BBC_HOME_PAGE);
+		getWebDriver().get(BBC_HOME_PAGE);
 		
-		bbcHomePage = new BbcHomePage(webDriver);
+		bbcHomePage = new BbcHomePage(getWebDriver());
 		
 		outputHelper.showMessage("my headr", "my msg");;
 	}

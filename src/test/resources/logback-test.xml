@@ -9,9 +9,10 @@
 		</encoder>
 	</appender>
 
-<!-- 
-    <logger name="com.bskyb.cukes.helpers.asserter.AssertBillingItemsUpdated" level="DEBUG"/>
- -->
+ 
+    <logger name="com.alien.examples.webdriver" level="DEBUG"/>
+    <logger name="com.alien.utils" level="DEBUG"/>
+ 
 
 	<root level="ERROR">
        <!-- <appender-ref ref="FILE" /> -->

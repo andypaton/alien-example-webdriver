@@ -9,16 +9,16 @@ Feature: bbc home page
     Given the BBC home page is opened
     And the "Sign in" link is selected
     And the "Register Now" link is selected
-    When new registration details are entered
-    Then the "Confirmation" page is displayed
+  #  When new registration details are entered
+  #  Then the "Confirmation" page is displayed
     
   @andy
   Scenario: Register - existing user retries
     Given the BBC home page is opened
     And the "Sign in" link is selected
     And the "Register Now" link is selected
-    When existing registration details are entered
-    Then "Looks like you’ve already registered with this email" registration warning is displayed
+#    When existing registration details are entered
+#    Then "Looks like you’ve already registered with this email" registration warning is displayed
     
   @wip  
   Scenario: Register - invalid DOB entered
