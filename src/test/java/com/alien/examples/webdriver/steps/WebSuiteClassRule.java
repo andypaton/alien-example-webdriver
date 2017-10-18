@@ -1,6 +1,8 @@
 package com.alien.examples.webdriver.steps;
 
-import java.io.IOException;
+import static com.alien.examples.webdriver.runtime.WebDriverManager.getWebDriver;
+
+import java.lang.management.ManagementFactory;
 
 import org.junit.rules.ExternalResource;
 import org.slf4j.Logger;
@@ -10,8 +12,6 @@ import org.springframework.test.context.ContextConfiguration;
 import com.alien.examples.webdriver.config.CucumberConfig;
 import com.alien.examples.webdriver.runtime.WebDriverManager;
 import com.alien.utils.webdriver.WebDriverFactory;
-
-import static com.alien.examples.webdriver.runtime.WebDriverManager.getWebDriver;
 
 @ContextConfiguration(classes=CucumberConfig.class)
 public class WebSuiteClassRule extends ExternalResource {
@@ -23,7 +23,7 @@ public class WebSuiteClassRule extends ExternalResource {
     protected void before() throws Throwable {
     	    WebDriverManager.webDriver.set(WebDriverFactory.getWebDriver());
     	    
-        LOGGER.debug("WebDriver instance created : " + getWebDriver().hashCode());
+        LOGGER.debug("WebDriver instance created : " + getWebDriver().hashCode() + " [JVM process name : " + ManagementFactory.getRuntimeMXBean().getName() + "]");
     }
 
     @Override

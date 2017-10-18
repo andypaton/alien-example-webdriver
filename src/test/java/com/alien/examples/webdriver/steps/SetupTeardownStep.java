@@ -38,7 +38,7 @@ public class SetupTeardownStep {
 	   
 //	      Delete all cookies at the start of each scenario to avoid shared state between tests
 	    
-	    LOGGER.debug("Deleting all cookies");
+	    LOGGER.debug("Deleting all cookies [" + getWebDriver().hashCode() + "]");
 
 	    getWebDriver().manage().deleteAllCookies();
 	}
