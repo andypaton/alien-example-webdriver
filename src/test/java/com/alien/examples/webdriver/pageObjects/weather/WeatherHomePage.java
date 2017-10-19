@@ -7,6 +7,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
+import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
 
 import com.alien.utils.webdriver.pageObjects.PageObject;
 
@@ -29,7 +32,12 @@ public class WeatherHomePage extends PageObject {
     
     public WeatherHomePage(final WebDriver webDriver) {
         super(webDriver);      
-        waitForElement(By.cssSelector(PROFILE_BUTTON_CSS), ELEMENT_IS_CLICKABLE);
+        
+        ElementLocatorFactory finder =  new AjaxElementLocatorFactory(webDriver, THIRTY_SECONDS); 
+        PageFactory.initElements(finder, this);
+        
+        
+//        waitForElement(By.cssSelector(PROFILE_BUTTON_CSS), ELEMENT_IS_CLICKABLE);
 //        waitForLoad();
 //        waitForPageToLoad(this.getClass());        
         assertTrue(this.isInitialized());        
