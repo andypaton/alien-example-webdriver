@@ -23,7 +23,8 @@ public class WebSuiteClassRule extends ExternalResource {
     protected void before() throws Throwable {
     	    WebDriverManager.webDriver.set(WebDriverFactory.getWebDriver());
     	    
-        LOGGER.debug("WebDriver instance created : " + getWebDriver().hashCode() + " [JVM process name : " + ManagementFactory.getRuntimeMXBean().getName() + "]");
+        LOGGER.debug("WebDriver instance created : " + getWebDriver().hashCode() 
+        		+ " [JVM process name : " + ManagementFactory.getRuntimeMXBean().getName() + "]");
     }
 
     @Override
