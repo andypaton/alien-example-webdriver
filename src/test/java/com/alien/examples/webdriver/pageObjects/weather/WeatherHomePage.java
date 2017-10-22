@@ -37,7 +37,7 @@ public class WeatherHomePage extends PageObject {
         PageFactory.initElements(finder, this);
         
         
-//        waitForElement(By.cssSelector(PROFILE_BUTTON_CSS), ELEMENT_IS_CLICKABLE);
+        waitForElement(By.cssSelector(PROFILE_BUTTON_CSS), ELEMENT_IS_CLICKABLE);
 //        waitForLoad();
 //        waitForPageToLoad(this.getClass());        
         assertTrue(this.isInitialized());        

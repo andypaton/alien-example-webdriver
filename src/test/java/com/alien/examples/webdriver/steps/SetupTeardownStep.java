@@ -23,7 +23,7 @@ import cucumber.api.java.Before;
 @ContextConfiguration(classes=CucumberConfig.class)
 public class SetupTeardownStep {
 	
-    private static final Logger LOGGER = LoggerFactory.getLogger(WebSuiteClassRule.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(SetupTeardownStep.class);
 
 	@Autowired 
     private RuntimeState runtimeState;
