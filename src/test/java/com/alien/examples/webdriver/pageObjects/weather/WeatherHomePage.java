@@ -33,11 +33,13 @@ public class WeatherHomePage extends PageObject {
     public WeatherHomePage(final WebDriver webDriver) {
         super(webDriver);      
         
+//        new NgWebDriver((JavascriptExecutor) webDriver).waitForAngularRequestsToFinish();
+        
         ElementLocatorFactory finder =  new AjaxElementLocatorFactory(webDriver, THIRTY_SECONDS); 
         PageFactory.initElements(finder, this);
         
         
-        waitForElement(By.cssSelector(PROFILE_BUTTON_CSS), ELEMENT_IS_CLICKABLE);
+//        waitForElement(By.cssSelector(PROFILE_BUTTON_CSS), ELEMENT_IS_CLICKABLE);
 //        waitForLoad();
 //        waitForPageToLoad(this.getClass());        
         assertTrue(this.isInitialized());        

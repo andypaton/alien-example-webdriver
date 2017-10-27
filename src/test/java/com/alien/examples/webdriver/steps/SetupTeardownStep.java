@@ -4,10 +4,10 @@ import static com.alien.examples.webdriver.runtime.WebDriverManager.getWebDriver
 
 import java.io.IOException;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 
@@ -23,7 +23,7 @@ import cucumber.api.java.Before;
 @ContextConfiguration(classes=CucumberConfig.class)
 public class SetupTeardownStep {
 	
-    private static final Logger LOGGER = LoggerFactory.getLogger(SetupTeardownStep.class);
+    private static final Logger LOGGER = Logger.getLogger(SetupTeardownStep.class.getName());
 
 	@Autowired 
     private RuntimeState runtimeState;
@@ -54,8 +54,8 @@ public class SetupTeardownStep {
 	}
 	
     public void embedScreenshot() throws IOException, InterruptedException {        	
-        	runtimeState.scenario.write("Scenario Failed in : " + getBrowserInfo());
-        	Thread.sleep(1000);
+        runtimeState.scenario.write("Scenario Failed in : " + getBrowserInfo());
+        Thread.sleep(1000);
         outputHelper.takeScreenshot();
     }
     

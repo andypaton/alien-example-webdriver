@@ -4,7 +4,7 @@
 
 	<groupId>com.alien.examples</groupId>
 	<artifactId>example-webdriver</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<url>http://maven.apache.org</url>
@@ -15,29 +15,18 @@
 		<test.runner>**/RunWebTest.java</test.runner>
 		<parallel.test.runners>**/parallel/**/Run*WebTest.java</parallel.test.runners>
 
-        <skip.acceptance.test>false</skip.acceptance.test>
-        <show.screenshots>false</show.screenshots>
+		<skip.acceptance.test>false</skip.acceptance.test>
+		<show.screenshots>false</show.screenshots>
 		<cukes.forkCount>0</cukes.forkCount>
 		<cukes.reuseForks>true</cukes.reuseForks>
-		<!-- <target.directory>/Users/andypaton/eclipse-workspace/test-maven-project/target</target.directory> -->
 
 		<maven.compiler.source>1.7</maven.compiler.source>
 		<maven.compiler.target>1.7</maven.compiler.target>
+
+		<springframework.version>4.3.11.RELEASE</springframework.version>
 	</properties>
 
 	<dependencies>
-
-		<dependency>
-			<groupId>com.alien.utils</groupId>
-			<artifactId>common-utils-report</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
-		</dependency>
-
-		<dependency>
-			<groupId>com.alien.utils</groupId>
-			<artifactId>common-utils-webdriver</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
-		</dependency>
 
 		<dependency>
 			<groupId>junit</groupId>
@@ -46,21 +35,22 @@
 			<scope>test</scope>
 		</dependency>
 
-
-		<!-- SPRINGFRAMEWORK -->
-
+		<!-- COMMON TEST FRAMEWORK -->
 		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-test</artifactId>
-			<version>5.0.0.RELEASE</version>
-			<scope>test</scope>
+			<groupId>com.alien</groupId>
+			<artifactId>common-utils-report</artifactId>
+			<version>1.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.alien</groupId>
+			<artifactId>common-utils-webdriver</artifactId>
+			<version>1.0.1-SNAPSHOT</version>
 		</dependency>
 
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context</artifactId>
-			<version>5.0.0.RELEASE</version>
-		</dependency>
+		<!-- NGWEBDRIVER TO PROVIDE HELPER CLASSES FOR TESTING ANGULARJS -->
+		<!-- <dependency> <groupId>com.paulhammant</groupId> <artifactId>ngwebdriver</artifactId> 
+			<version>1.0</version> <scope>test</scope> <exclusions> <exclusion> <groupId>org.seleniumhq.selenium</groupId> 
+			<artifactId>selenium-java</artifactId> </exclusion> </exclusions> </dependency> -->
 
 		<!-- CUCUMBER -->
 		<dependency>
@@ -139,6 +129,29 @@
 			<version>2.0.2-beta</version>
 		</dependency>
 
+		<!-- SPRINGFRAMEWORK -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${springframework.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${springframework.version}</version>
+		</dependency>
+
+		<!-- LOGGER -->
+		<!-- <dependency> <groupId>log4j</groupId> <artifactId>log4j</artifactId> 
+			<version>1.2.17</version> </dependency> -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-1.2-api</artifactId>
+			<version>2.9.1</version>
+		</dependency>
+
 	</dependencies>
 
 	<profiles>
@@ -165,19 +178,19 @@
 				<acceptanceTest.runner>${test.runner}</acceptanceTest.runner>
 			</properties>
 		</profile>
-		
+
 		<profile>
-            <id>phantom-test</id>
-            <activation>
-                <activeByDefault>false</activeByDefault>
-            </activation>
-            <properties>
-                <webdriver>phantom</webdriver>
-                <skip.acceptance.test>false</skip.acceptance.test>
-                <acceptanceTest.runner>${test.runner}</acceptanceTest.runner>
-                <show.screenshots>true</show.screenshots>
-            </properties>
-        </profile>
+			<id>phantom-test</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<properties>
+				<webdriver>phantom</webdriver>
+				<skip.acceptance.test>false</skip.acceptance.test>
+				<acceptanceTest.runner>${test.runner}</acceptanceTest.runner>
+				<show.screenshots>true</show.screenshots>
+			</properties>
+		</profile>
 
 		<profile>
 			<id>parallel-chrome-tests</id>
@@ -274,15 +287,15 @@
 						-XX:+CMSParallelRemarkEnabled
 						-XX:+CMSClassUnloadingEnabled</argLine>
 					<systemPropertyVariables>
-                        <web.driver>${webdriver}</web.driver>
-                        <screenshots>${show.screenshots}</screenshots>
-                        <fork.number>$${surefire.forkNumber}</fork.number>
-                    </systemPropertyVariables>
-                    <additionalClasspathElements>
-                    <additionalClasspathElement>
-                    ${basedir}/target/classes
-                    </additionalClasspathElement>
-                    </additionalClasspathElements>
+						<web.driver>${webdriver}</web.driver>
+						<screenshots>${show.screenshots}</screenshots>
+						<fork.number>$${surefire.forkNumber}</fork.number>
+					</systemPropertyVariables>
+					<additionalClasspathElements>
+						<additionalClasspathElement>
+							${basedir}/target/classes
+						</additionalClasspathElement>
+					</additionalClasspathElements>
 				</configuration>
 				<executions>
 					<execution>
@@ -308,32 +321,32 @@
 					</execution>
 				</executions>
 			</plugin>
-			
-            <!--Extract common-utils-webdriver's resources-->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <version>3.0.2</version>
-                <executions>
-                    <execution>
-                        <id>unpack</id>
-                        <phase>generate-resources</phase>
-                        <goals>
-                            <goal>unpack-dependencies</goal>
-                        </goals>
-                        <configuration>
-                            <includeGroupIds>com.alien.utils</includeGroupIds>
-                            <includeArtifactIds>common-utils-webdriver</includeArtifactIds>
-                            <excludeTransitive>true</excludeTransitive>
-                            <overWrite>true</overWrite>
-                            <outputDirectory>${project.build.directory}/webdriver-resources</outputDirectory>
-                            <excludes>org/**,META-INF/**</excludes>
-                            <overWriteReleases>true</overWriteReleases>
-                            <overWriteSnapshots>true</overWriteSnapshots>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>	
+
+			<!--Extract common-utils-webdriver's resources -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<version>3.0.2</version>
+				<executions>
+					<execution>
+						<id>unpack</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>unpack-dependencies</goal>
+						</goals>
+						<configuration>
+							<includeGroupIds>com.alien</includeGroupIds>
+							<includeArtifactIds>common-utils-webdriver</includeArtifactIds>
+							<excludeTransitive>true</excludeTransitive>
+							<overWrite>true</overWrite>
+							<outputDirectory>${project.build.directory}/webdriver-resources</outputDirectory>
+							<excludes>org/**,META-INF/**</excludes>
+							<overWriteReleases>true</overWriteReleases>
+							<overWriteSnapshots>true</overWriteSnapshots>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 
 			<!-- GENERATE CUCUMBER REPORT MATCHING JENKINS PLUGIN -->
 
@@ -358,17 +371,17 @@
 
 		</plugins>
 
-        <!-- Add webdriver resource location -->
-        <resources>
-            <resource>
-                <filtering>false</filtering>
-                <directory>${project.build.directory}/webdriver-resources</directory>
-            </resource>
-            <resource>
-                <filtering>false</filtering>
-                <directory>${basedir}/src/main/resources</directory>
-            </resource>
-        </resources>
+		<!-- Add webdriver resource location -->
+		<resources>
+			<resource>
+				<filtering>false</filtering>
+				<directory>${project.build.directory}/webdriver-resources</directory>
+			</resource>
+			<resource>
+				<filtering>false</filtering>
+				<directory>${basedir}/src/main/resources</directory>
+			</resource>
+		</resources>
 	</build>
 
 </project>

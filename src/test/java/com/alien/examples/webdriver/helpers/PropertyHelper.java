@@ -1,14 +1,14 @@
 package com.alien.examples.webdriver.helpers;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 
 import com.alien.examples.webdriver.steps.WebSuiteClassRule;
 
 public class PropertyHelper {
 	
-    private static final Logger LOGGER = LoggerFactory.getLogger(WebSuiteClassRule.class);
+    private static final Logger LOGGER = Logger.getLogger(PropertyHelper.class.getName());
 
 
     @Value("${screenshots}")
