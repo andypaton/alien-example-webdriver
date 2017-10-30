@@ -1,6 +1,6 @@
 package com.alien.examples.webdriver.helpers;
 
-import static com.alien.examples.webdriver.runtime.WebDriverManager.getWebDriver;
+import static com.alien.examples.webdriver.runtime.ThreadManager.getWebDriver;
 
 import java.io.IOException;
 

@@ -2,7 +2,7 @@ package com.alien.examples.webdriver.runtime;
 
 import org.openqa.selenium.WebDriver;
 
-public class WebDriverManager {
+public class ThreadManager {
 		
 	// Threads for running in parallel
     public static ThreadLocal<WebDriver> webDriver = new ThreadLocal<WebDriver>();

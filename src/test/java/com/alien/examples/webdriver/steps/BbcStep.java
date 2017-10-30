@@ -1,6 +1,6 @@
 package com.alien.examples.webdriver.steps;
 
-import static com.alien.examples.webdriver.runtime.WebDriverManager.getWebDriver;
+import static com.alien.examples.webdriver.runtime.ThreadManager.getWebDriver;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
